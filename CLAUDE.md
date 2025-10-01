@@ -123,3 +123,68 @@ Required in `.env.local`:
 To initialize the Supabase database:
 1. Run `scripts/001_create_tables.sql` in Supabase SQL Editor
 2. Optionally run `scripts/002_seed_sample_data.sql` for sample reports
+
+**Note on seed data**: The seed data contains escaped newlines (`\n` as literal strings). The application handles this in `components/report-detail.tsx` by preprocessing markdown content with `.replace(/\\n/g, '\n')` before passing to ReactMarkdown.
+
+## Deployment
+
+### Production Environment
+
+**Deployed at**: https://research-dashboard-nine.vercel.app
+
+Production uses:
+- **Vercel** for hosting
+- **Supabase** production instance (Project ID: xvaunweueluikscwkzlx)
+- Environment variables configured in `vercel.json`
+
+### Deployment Process
+
+```bash
+# Deploy to Vercel (requires authentication)
+vercel --prod
+
+# Or with token
+vercel --token YOUR_TOKEN --yes --prod
+```
+
+**Important**: Environment variables in `vercel.json` include production Supabase credentials. This file should be committed but credentials should be rotated if repository becomes public.
+
+### Supabase Configuration Notes
+
+**Email Confirmation**: Production Supabase requires email confirmation by default. For demo/testing:
+1. Go to Supabase Dashboard → Authentication → Settings
+2. Disable "Enable email confirmations"
+3. Or manually confirm users in Auth → Users panel
+
+**Demo Account**:
+- Email: `demo@researchdashboard.com`
+- Password: `demo123456`
+
+### Local vs Production
+
+**Local Setup** (see `SETUP_COMPLETE.md`):
+- Uses local Supabase via Docker (`supabase start`)
+- Environment variables in `.env.local`
+- Test user with `test@example.com` (not valid in production)
+
+**Production**:
+- Cloud Supabase instance
+- Environment variables in `vercel.json`
+- Requires valid email domains for user creation
+
+## Markdown Rendering Fix
+
+The application uses `react-markdown` with `remark-gfm` for GitHub Flavored Markdown support. Due to escaped newlines in seed data, `components/report-detail.tsx` (line 93) preprocesses content:
+
+```typescript
+const unescapedMarkdown = report.markdown_content.replace(/\\n/g, '\n')
+```
+
+This ensures proper rendering of headings, lists, and paragraphs. See `MARKDOWN_FIX.md` for detailed explanation.
+
+## Documentation
+
+- **SETUP_COMPLETE.md**: Local development setup and testing
+- **DEPLOYMENT_SUCCESS.md**: Production deployment guide
+- **AUTOMATED_TEST_RESULTS.md**: Playwright test results
+- **MARKDOWN_FIX.md**: Markdown rendering solution
