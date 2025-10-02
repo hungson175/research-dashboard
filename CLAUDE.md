@@ -172,19 +172,52 @@ vercel --token YOUR_TOKEN --yes --prod
 - Environment variables in `vercel.json`
 - Requires valid email domains for user creation
 
+## Insights Tab Rendering
+
+The Insights tab displays complete HTML SPA reports using an iframe to preserve all custom styling and JavaScript functionality:
+
+```typescript
+// components/report-detail.tsx
+<iframe
+  srcDoc={report.html_insights}
+  className="w-full border-0 rounded-lg"
+  style={{ minHeight: "800px", height: "auto" }}
+  title="Research Insights"
+  sandbox="allow-scripts allow-same-origin"
+/>
+```
+
+This ensures proper rendering of:
+- Interactive tab navigation
+- Custom MoMo design system styling
+- Data tables with branded headers
+- JavaScript-driven features
+
 ## Markdown Rendering Fix
 
-The application uses `react-markdown` with `remark-gfm` for GitHub Flavored Markdown support. Due to escaped newlines in seed data, `components/report-detail.tsx` (line 93) preprocesses content:
+The Full Report tab uses `react-markdown` with `remark-gfm` for GitHub Flavored Markdown support. Due to escaped newlines in seed data, `components/report-detail.tsx` preprocesses content:
 
 ```typescript
 const unescapedMarkdown = report.markdown_content.replace(/\\n/g, '\n')
 ```
 
-This ensures proper rendering of headings, lists, and paragraphs. See `MARKDOWN_FIX.md` for detailed explanation.
+This ensures proper rendering of headings, lists, and paragraphs. See `docs/archive/MARKDOWN_FIX.md` for detailed explanation.
 
 ## Documentation
 
-- **SETUP_COMPLETE.md**: Local development setup and testing
-- **DEPLOYMENT_SUCCESS.md**: Production deployment guide
-- **AUTOMATED_TEST_RESULTS.md**: Playwright test results
-- **MARKDOWN_FIX.md**: Markdown rendering solution
+Documentation is organized in the `docs/` directory:
+
+- **docs/README.md**: Documentation index and structure guide
+- **docs/setup/**: Setup and configuration guides
+  - `SETUP_COMPLETE.md`: Local development setup and testing
+  - `GITHUB_VERCEL_SETUP.md`: GitHub and Vercel deployment
+  - `MOMO_DESIGN_ANALYSIS.md`: Design system analysis
+- **docs/archive/**: Historical records and reports
+  - `DEPLOYMENT_SUCCESS.md`: Production deployment guide
+  - `AUTOMATED_TEST_RESULTS.md`: Playwright test results
+  - `MARKDOWN_FIX.md`: Markdown rendering solution
+
+Core documentation remains at root level:
+- **CLAUDE.md**: This file - project overview and guidelines
+- **specs.md**: Technical specifications
+- **current_prompt.md**: Current development tasks

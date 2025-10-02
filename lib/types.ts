@@ -12,15 +12,6 @@ export interface Report {
   is_bookmarked?: boolean
 }
 
-export interface Source {
-  id: string
-  report_id: string
-  title: string
-  url: string
-  accessed_at: string
-  created_at: string
-}
-
 export interface Bookmark {
   id: string
   user_id: string

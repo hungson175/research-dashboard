@@ -27,13 +27,6 @@ export default async function ReportPage({ params }: ReportPageProps) {
     notFound()
   }
 
-  // Fetch sources
-  const { data: sources } = await supabase
-    .from("sources")
-    .select("*")
-    .eq("report_id", id)
-    .order("created_at", { ascending: true })
-
   // Check if bookmarked
   const { data: bookmark } = await supabase
     .from("bookmarks")
@@ -50,7 +43,7 @@ export default async function ReportPage({ params }: ReportPageProps) {
   return (
     <div className="min-h-screen bg-background">
       <DashboardHeader user={user} />
-      <ReportDetail report={reportWithBookmark} sources={sources || []} userId={user.id} />
+      <ReportDetail report={reportWithBookmark} userId={user.id} />
     </div>
   )
 }

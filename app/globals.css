@@ -207,3 +207,116 @@
     color: var(--momo-pink-primary);
   }
 }
+
+/* Markdown Prose Styling */
+.markdown-content {
+  @apply max-w-none;
+
+  /* Headings with proper hierarchy */
+  & h1 {
+    @apply text-4xl font-bold mb-6 mt-8 text-foreground;
+    line-height: 1.2;
+  }
+
+  & h2 {
+    @apply text-3xl font-bold mb-5 mt-7 text-foreground;
+    line-height: 1.3;
+  }
+
+  & h3 {
+    @apply text-2xl font-semibold mb-4 mt-6 text-foreground;
+    line-height: 1.4;
+  }
+
+  & h4 {
+    @apply text-xl font-semibold mb-3 mt-5 text-foreground;
+    line-height: 1.4;
+  }
+
+  & h5 {
+    @apply text-lg font-semibold mb-2 mt-4 text-foreground;
+    line-height: 1.5;
+  }
+
+  & h6 {
+    @apply text-base font-semibold mb-2 mt-3 text-foreground;
+    line-height: 1.5;
+  }
+
+  /* Paragraphs with proper spacing */
+  & p {
+    @apply mb-4 leading-7 text-foreground/90;
+  }
+
+  /* Lists */
+  & ul, & ol {
+    @apply mb-4 ml-6 space-y-2;
+  }
+
+  & li {
+    @apply leading-7 text-foreground/90;
+  }
+
+  & ul > li {
+    @apply list-disc;
+  }
+
+  & ol > li {
+    @apply list-decimal;
+  }
+
+  /* Links */
+  & a {
+    @apply text-primary hover:underline font-medium;
+  }
+
+  /* Strong and emphasis */
+  & strong {
+    @apply font-bold text-foreground;
+  }
+
+  & em {
+    @apply italic;
+  }
+
+  /* Code blocks */
+  & code {
+    @apply bg-muted px-1.5 py-0.5 rounded text-sm font-mono;
+  }
+
+  & pre {
+    @apply bg-muted p-4 rounded-lg mb-4 overflow-x-auto;
+  }
+
+  & pre code {
+    @apply bg-transparent p-0;
+  }
+
+  /* Blockquotes */
+  & blockquote {
+    @apply border-l-4 border-primary/30 pl-4 italic my-4 text-muted-foreground;
+  }
+
+  /* Horizontal rules */
+  & hr {
+    @apply my-8 border-border;
+  }
+
+  /* Tables */
+  & table {
+    @apply w-full mb-4 border-collapse;
+  }
+
+  & th {
+    @apply bg-muted font-semibold p-2 text-left border border-border;
+  }
+
+  & td {
+    @apply p-2 border border-border;
+  }
+
+  /* First paragraph after heading */
+  & h1 + p, & h2 + p, & h3 + p {
+    @apply mt-3;
+  }
+}

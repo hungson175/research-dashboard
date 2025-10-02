@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & Biometric Security in Vietnam Fintech - MoMo Research Insights</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --momo-pink-primary: #a50064;
+            --momo-pink-secondary: #d82f8b;
+            --momo-pink-light: #f9b5c3;
+            --momo-gray-900: #1c171a;
+            --momo-gray-600: #574d56;
+            --momo-gray-100: #f5f4f5;
+            --momo-shadow-sm: 0px 0px 5px 0px rgba(0, 0, 0, 0.02), 0px 2px 10px 0px rgba(0, 0, 0, 0.06);
+            --momo-shadow-md: 0px 0px 15px 0px rgba(0, 0, 0, 0.03), 0px 2px 30px 0px rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        .card-momo {
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--momo-shadow-sm);
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .card-momo:hover {
+            box-shadow: var(--momo-shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--momo-pink-primary) 0%, var(--momo-pink-secondary) 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(165, 0, 100, 0.3);
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(165, 0, 100, 0.05) 0%, rgba(216, 47, 139, 0.05) 100%);
+            border-left: 4px solid var(--momo-pink-primary);
+        }
+
+        .insight-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--momo-pink-primary);
+            line-height: 1;
+        }
+
+        .tab-button {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .tab-button.active {
+            background: var(--momo-pink-primary);
+            color: white;
+        }
+
+        .tab-button:not(.active) {
+            color: var(--momo-gray-600);
+            border-color: #e5e7eb;
+        }
+
+        .tab-button:not(.active):hover {
+            border-color: var(--momo-pink-light);
+            color: var(--momo-pink-primary);
+        }
+
+        .recommendation-badge {
+            display: inline-block;
+            background: var(--momo-pink-light);
+            color: var(--momo-pink-primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 32px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            background: var(--momo-pink-primary);
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(165, 0, 100, 0.1);
+        }
+
+        .comparison-bar {
+            height: 8px;
+            border-radius: 4px;
+            background: var(--momo-gray-100);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .comparison-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--momo-pink-primary) 0%, var(--momo-pink-secondary) 100%);
+            transition: width 1s ease-out;
+        }
+
+        .metric-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--momo-pink-light) 0%, rgba(249, 181, 195, 0.5) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .alert-box {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%);
+            border-left: 4px solid #ef4444;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
+            border-left: 4px solid #22c55e;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- MoMo Navigation -->
+    <nav class="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <img src="https://homepage.momocdn.net/fileuploads/svg/momo-file-240411162904.svg" alt="MoMo" class="h-8 w-auto" />
+                <span class="text-sm font-medium text-gray-600 hidden sm:inline">Research Insights</span>
+            </div>
+            <div class="text-sm text-gray-500">
+                September 2025
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Executive Summary -->
+        <div class="card-momo p-8 mb-8">
+            <div class="flex items-start space-x-4">
+                <div class="metric-icon">🔒</div>
+                <div class="flex-1">
+                    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">AI & Biometric Security: Transforming Vietnam's Fintech Landscape</h1>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-4">
+                        Vietnam's fintech sector is undergoing a dramatic security transformation driven by mandatory biometric verification and AI-powered fraud detection. With <strong class="text-pink-600">72% fraud reduction</strong> already achieved and the market projected to reach <strong class="text-pink-600">$79.25B by 2034</strong> (17.8% CAGR), the adoption of biometric and AI technologies is reshaping financial security, user trust, and regulatory compliance.
+                    </p>
+                    <p class="text-base text-gray-600 leading-relaxed">
+                        This research reveals critical insights into implementation costs, urban-rural adoption barriers, emerging AI threats, and strategic opportunities for MoMo to strengthen its market leadership through advanced security integration.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Metrics Dashboard -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-6">📊 Critical Metrics at a Glance</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card-momo p-6 stat-card">
+                    <div class="text-sm text-gray-600 mb-2">Fraud Reduction (Biometrics)</div>
+                    <div class="insight-number">72%</div>
+                    <div class="text-xs text-gray-500 mt-2">Fraudulent accounts down from 2,400 to 682</div>
+                </div>
+                <div class="card-momo p-6 stat-card">
+                    <div class="text-sm text-gray-600 mb-2">Market Growth (2024-2034)</div>
+                    <div class="insight-number">17.8%</div>
+                    <div class="text-xs text-gray-500 mt-2">CAGR: $15.4B → $79.25B</div>
+                </div>
+                <div class="card-momo p-6 stat-card">
+                    <div class="text-sm text-gray-600 mb-2">Accounts Verified</div>
+                    <div class="insight-number">120.9M</div>
+                    <div class="text-xs text-gray-500 mt-2">Individual + 1.2M organizational</div>
+                </div>
+                <div class="card-momo p-6 stat-card">
+                    <div class="text-sm text-gray-600 mb-2">Customer Trust Increase</div>
+                    <div class="insight-number">22%</div>
+                    <div class="text-xs text-gray-500 mt-2">Early adopters of biometric solutions</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Insights -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-6">🎯 5 Critical Insights</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Insight 1 -->
+                <div class="card-momo p-6">
+                    <div class="flex items-start space-x-3 mb-4">
+                        <div class="metric-icon text-2xl">✅</div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">1. Biometric Mandates Deliver Dramatic Results</h3>
+                        </div>
+                    </div>
+                    <div class="space-y-3 text-gray-600">
+                        <p><strong>Impact:</strong> SBV's Decision 2345 (July 2024) and Circular 17/2024 mandated biometric authentication for transactions >10M VND, achieving:</p>
+                        <ul class="list-disc list-inside space-y-1 ml-4">
+                            <li><strong>72% reduction</strong> in fraudulent accounts (2,400 → 682)</li>
+                            <li><strong>50-59% drop</strong> in fraud incidents and money transfer cases</li>
+                            <li><strong>120.9M accounts verified</strong> via chip ID/VNeID integration</li>
+                        </ul>
+                        <div class="success-box p-4 rounded-lg mt-3">
+                            <p class="text-sm"><strong>Opportunity:</strong> MoMo's iProov partnership positions it as a security leader, but full integration across 30M users requires investment in NFC infrastructure and user education to maintain compliance and trust.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Insight 2 -->
+                <div class="card-momo p-6">
+                    <div class="flex items-start space-x-3 mb-4">
+                        <div class="metric-icon text-2xl">🤖</div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">2. AI Integration: Cost Savings vs. Rising Threats</h3>
+                        </div>
+                    </div>
+                    <div class="space-y-3 text-gray-600">
+                        <p><strong>Dual Reality:</strong> AI offers significant efficiencies but also enables sophisticated fraud:</p>
+                        <ul class="list-disc list-inside space-y-1 ml-4">
+                            <li><strong>7-9% cost reductions</strong> expected by 2027 (SE Asia companies)</li>
+                            <li><strong>Visa's $3B investment</strong> in AI security technologies</li>
+                            <li><strong>1500% surge</strong> in deepfake fraud across APAC (2023)</li>
+                            <li><strong>$485.6B global losses</strong> from AI-driven fraud (2023)</li>
+                        </ul>
+                        <div class="alert-box p-4 rounded-lg mt-3">
+                            <p class="text-sm"><strong>Threat:</strong> Phishing emails with AI achieve 54% click-through rates (vs. 12% traditional). MoMo must deploy real-time AI monitoring and deepfake detection to stay ahead.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Insight 3 -->
+                <div class="card-momo p-6">
+                    <div class="flex items-start space-x-3 mb-4">
+                        <div class="metric-icon text-2xl">🏙️</div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">3. Urban-Rural Digital Divide: The Inclusion Challenge</h3>
+                        </div>
+                    </div>
+                    <div class="space-y-3 text-gray-600">
+                        <p><strong>Critical Gap:</strong> Despite 87% adult account ownership nationwide, rural barriers persist:</p>
+                        <ul class="list-disc list-inside space-y-1 ml-4">
+                            <li><strong>62% rural population</strong> faces access challenges (vs. 45% urban transactions)</li>
+                            <li><strong>86M accounts deactivated</strong> (57% compliance rate) due to biometric non-verification</li>
+                            <li><strong>Low financial literacy</strong> and smartphone access hinder rural adoption</li>
+                            <li><strong>$20.3B MSME financing gap</strong> due to collateral requirements</li>
+                        </ul>
+                        <div class="success-box p-4 rounded-lg mt-3">
+                            <p class="text-sm"><strong>Strategy:</strong> MoMo's super app model with in-app tutorials (23% prefer), offline verification support, and partnerships with rural banks/agents can bridge this gap for 290M unbanked in SE Asia.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Insight 4 -->
+                <div class="card-momo p-6">
+                    <div class="flex items-start space-x-3 mb-4">
+                        <div class="metric-icon text-2xl">💰</div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">4. Compliance Costs: Hidden Investment Requirements</h3>
+                        </div>
+                    </div>
+                    <div class="space-y-3 text-gray-600">
+                        <p><strong>Implementation Reality:</strong> While specific cost data is scarce, qualitative evidence reveals significant investment needs:</p>
+                        <ul class="list-disc list-inside space-y-1 ml-4">
+                            <li><strong>Technology infrastructure:</strong> NFC-enabled devices, chip ID readers, data integration systems</li>
+                            <li><strong>Training & support:</strong> Customer service surges (elderly users), in-branch staff, 24/7 helplines</li>
+                            <li><strong>System upgrades:</strong> National Population Database integration, API connections, real-time verification</li>
+                            <li><strong>Legacy challenges:</strong> HSBC/UOB faced service suspensions due to slow adaptation</li>
+                        </ul>
+                        <div class="alert-box p-4 rounded-lg mt-3">
+                            <p class="text-sm"><strong>Risk:</strong> Banks investing proactively report 22% trust gains, but delays disrupt operations in Vietnam's $450B economy. MoMo must allocate sufficient budget for seamless integration.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Insight 5 -->
+                <div class="card-momo p-6">
+                    <div class="flex items-start space-x-3 mb-4">
+                        <div class="metric-icon text-2xl">🚀</div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">5. Market Opportunity: $79B Fintech Boom by 2034</h3>
+                        </div>
+                    </div>
+                    <div class="space-y-3 text-gray-600">
+                        <p><strong>Growth Trajectory:</strong> Vietnam's fintech sector is primed for explosive expansion:</p>
+                        <ul class="list-disc list-inside space-y-1 ml-4">
+                            <li><strong>$15.4B (2024) → $79.25B (2034)</strong> at 17.8% CAGR</li>
+                            <li><strong>33M active e-wallets</strong> (MoMo: 68% market share, 30M users)</li>
+                            <li><strong>97-98% digital transactions</strong> at major banks; 80% mobile wallet use</li>
+                            <li><strong>BNPL market:</strong> $1.32B (2023) → $6.89B (2029) at 29.2% CAGR</li>
+                        </ul>
+                        <div class="success-box p-4 rounded-lg mt-3">
+                            <p class="text-sm"><strong>Positioning:</strong> MoMo's early biometric adoption (iProov) and AI investments (Pique acquisition) provide competitive advantage. Focus on seamless UX and rural expansion to capture growth.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Visualizations -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-6">📈 Data Visualizations</h2>
+
+            <!-- Tabs for different charts -->
+            <div class="flex flex-wrap gap-3 mb-6">
+                <button class="tab-button active" onclick="showChart('fraud')">Fraud Reduction Impact</button>
+                <button class="tab-button" onclick="showChart('market')">Market Growth</button>
+                <button class="tab-button" onclick="showChart('adoption')">Adoption Barriers</button>
+                <button class="tab-button" onclick="showChart('threats')">AI Threat Landscape</button>
+            </div>
+
+            <!-- Chart 1: Fraud Reduction -->
+            <div id="chart-fraud" class="card-momo p-6">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Biometric Authentication: Fraud Reduction Metrics</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <canvas id="fraudChart"></canvas>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="text-gray-600">Fraudulent Accounts Reduction</span>
+                                <span class="font-semibold text-pink-600">72%</span>
+                            </div>
+                            <div class="comparison-bar">
+                                <div class="comparison-fill" style="width: 72%"></div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">2,400 accounts → 682 accounts</p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="text-gray-600">Fraud Incidents Dropped</span>
+                                <span class="font-semibold text-pink-600">50-59%</span>
+                            </div>
+                            <div class="comparison-bar">
+                                <div class="comparison-fill" style="width: 59%"></div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">Money transfer fraud cases reduced by half</p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="text-gray-600">Customer Trust Increase</span>
+                                <span class="font-semibold text-pink-600">22%</span>
+                            </div>
+                            <div class="comparison-bar">
+                                <div class="comparison-fill" style="width: 22%"></div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">Banks with proactive biometric solutions</p>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="text-gray-600">Accounts Verified</span>
+                                <span class="font-semibold text-pink-600">100%</span>
+                            </div>
+                            <div class="comparison-bar">
+                                <div class="comparison-fill" style="width: 100%"></div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">120.9M individual + 1.2M organizational accounts</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <p class="text-sm text-gray-600"><strong>Key Insight:</strong> SBV's mandatory biometric verification (Decision 2345, July 2024) achieved dramatic fraud reductions within 3-6 months. Vietcombank reported 63% decline in suspicious activities, demonstrating the effectiveness of real-time fraud detection integration.</p>
+                </div>
+            </div>
+
+            <!-- Chart 2: Market Growth -->
+            <div id="chart-market" class="card-momo p-6 hidden">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Vietnam Fintech Market Trajectory (2024-2034)</h3>
+                <div class="mb-6">
+                    <canvas id="marketChart"></canvas>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <div class="text-2xl font-bold text-pink-600 mb-1">$79.25B</div>
+                        <div class="text-sm text-gray-600">Projected Market Size (2034)</div>
+                        <div class="text-xs text-gray-500 mt-2">From $15.4B in 2024 (17.8% CAGR)</div>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <div class="text-2xl font-bold text-pink-600 mb-1">200+</div>
+                        <div class="text-sm text-gray-600">Fintech Companies</div>
+                        <div class="text-xs text-gray-500 mt-2">4x growth from 39 (2015) to 200+ (2022)</div>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <div class="text-2xl font-bold text-pink-600 mb-1">87%</div>
+                        <div class="text-sm text-gray-600">Adult Account Ownership</div>
+                        <div class="text-xs text-gray-500 mt-2">Up from 31% (2015-2017)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart 3: Adoption Barriers -->
+            <div id="chart-adoption" class="card-momo p-6 hidden">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Urban-Rural Adoption Barriers & Compliance Challenges</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <canvas id="adoptionChart"></canvas>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded">
+                            <div class="font-semibold text-red-900 mb-2">🚨 86M Accounts Deactivated</div>
+                            <p class="text-sm text-red-700">57% compliance rate (out of 200M accounts) due to biometric non-verification by Sept 2025 deadline. Many rural residents lack smartphone access or digital literacy.</p>
+                        </div>
+                        <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded">
+                            <div class="font-semibold text-yellow-900 mb-2">⚠️ Rural Access Gap</div>
+                            <p class="text-sm text-yellow-700">62% of population is rural, facing barriers: low financial literacy, limited NFC device penetration, and reliance on cash-dominant informal economies.</p>
+                        </div>
+                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+                            <div class="font-semibold text-blue-900 mb-2">💡 Adoption Strategies</div>
+                            <p class="text-sm text-blue-700">23% of users prefer in-app instructions. Banks offering 24/7 support, branch hours extensions (Vietcombank), and VNeID remote verification are seeing higher success.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart 4: AI Threats -->
+            <div id="chart-threats" class="card-momo p-6 hidden">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Emerging AI-Powered Cyber Fraud Threats</h3>
+                <div class="mb-6">
+                    <canvas id="threatsChart"></canvas>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="alert-box p-4 rounded-lg">
+                        <div class="font-semibold text-gray-900 mb-2">🎭 Deepfake Fraud Explosion</div>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• <strong>1500% surge</strong> in APAC deepfake fraud (2023)</li>
+                            <li>• <strong>179 incidents</strong> in Q1 2025 alone (19% above 2024 total)</li>
+                            <li>• Notable case: <strong>$25.6M stolen</strong> via deepfake video call (Arup)</li>
+                        </ul>
+                    </div>
+                    <div class="alert-box p-4 rounded-lg">
+                        <div class="font-semibold text-gray-900 mb-2">📧 AI-Powered Phishing</div>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• <strong>4,151% increase</strong> in phishing volume (ChatGPT era)</li>
+                            <li>• <strong>54% click-through rate</strong> for AI-written emails (vs. 12% traditional)</li>
+                            <li>• Fraudsters using WormGPT/FraudGPT for BEC scams</li>
+                        </ul>
+                    </div>
+                    <div class="success-box p-4 rounded-lg">
+                        <div class="font-semibold text-gray-900 mb-2">🛡️ AI Defense Solutions</div>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• <strong>Visa's $3B investment</strong> in AI security (VAA prevented $27B fraud in 2022)</li>
+                            <li>• <strong>Real-time monitoring</strong>: 95% accuracy in anomaly detection</li>
+                            <li>• <strong>iProov Dynamic Liveness</strong>: Detects deepfakes at authentication</li>
+                        </ul>
+                    </div>
+                    <div class="success-box p-4 rounded-lg">
+                        <div class="font-semibold text-gray-900 mb-2">📊 ROI & Efficiency Gains</div>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• <strong>$1.9M average breach cost reduction</strong> with AI/automation</li>
+                            <li>• <strong>80 days shorter</strong> breach lifecycle</li>
+                            <li>• <strong>7-9% cost savings</strong> expected by 2027 (SE Asia companies)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Surprising Findings -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-6">🔍 Surprising Findings</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="card-momo p-6">
+                    <div class="text-3xl mb-3">⚡</div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Biometric Verification is NOT Just Security</h3>
+                    <p class="text-gray-600 text-sm mb-3">
+                        Early adopters report <strong>22% increased customer trust</strong> — transforming biometrics from a compliance burden into a competitive advantage. Banks like Vietcombank saw suspicious activities drop 63% while enhancing user confidence.
+                    </p>
+                    <div class="bg-pink-50 rounded-lg p-3 text-sm text-pink-900">
+                        <strong>Implication for MoMo:</strong> Position biometrics as a trust-building feature, not just a regulatory checkbox. Market this as "MoMo SafeID" to differentiate from competitors.
+                    </div>
+                </div>
+
+                <div class="card-momo p-6">
+                    <div class="text-3xl mb-3">🌍</div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Rural Exclusion: 86M Accounts Deactivated</h3>
+                    <p class="text-gray-600 text-sm mb-3">
+                        Despite Vietnam's 87% account ownership, <strong>86 million accounts (43% of total)</strong> were deactivated due to non-compliance with biometric verification by Sept 2025. This reveals a massive financial exclusion crisis, particularly in rural areas.
+                    </p>
+                    <div class="bg-pink-50 rounded-lg p-3 text-sm text-pink-900">
+                        <strong>Opportunity:</strong> MoMo's super app with offline verification support and agent networks can capture this underserved segment. Partner with rural banks and provide mobile verification vans.
+                    </div>
+                </div>
+
+                <div class="card-momo p-6">
+                    <div class="text-3xl mb-3">🎯</div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">AI Phishing: 54% Click-Through Rate</h3>
+                    <p class="text-gray-600 text-sm mb-3">
+                        AI-generated phishing emails achieve a <strong>54% click-through rate</strong> compared to just 12% for traditional attempts. The threat is so severe that 90% of companies lack the maturity to counter AI-enabled attacks.
+                    </p>
+                    <div class="bg-pink-50 rounded-lg p-3 text-sm text-pink-900">
+                        <strong>Urgent Action:</strong> MoMo must deploy behavioral analytics, context-aware authentication, and user education campaigns immediately. Consider AI-powered anti-phishing tools integrated into the app.
+                    </div>
+                </div>
+
+                <div class="card-momo p-6">
+                    <div class="text-3xl mb-3">💎</div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">NFC Chip Reading: The Hidden Bottleneck</h3>
+                    <p class="text-gray-600 text-sm mb-3">
+                        Vietnam Banks Association noted <strong>"low success rates in reading chip-based ID cards via NFC"</strong> at branches. This technical challenge is slowing adoption despite regulatory mandates, affecting user experience.
+                    </p>
+                    <div class="bg-pink-50 rounded-lg p-3 text-sm text-pink-900">
+                        <strong>Competitive Edge:</strong> Invest in superior NFC technology and user-friendly guides (e.g., optimal phone positioning, troubleshooting). MoMo's tech advantage can drive faster onboarding than competitors.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Regulatory Timeline -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-6">📅 Critical Regulatory Milestones</h2>
+            <div class="card-momo p-6">
+                <div class="space-y-6">
+                    <div class="timeline-item">
+                        <div class="font-semibold text-gray-900">July 1, 2024</div>
+                        <div class="text-sm text-gray-600 mt-1">Decision 2345: Mandatory biometric authentication for transactions >10M VND; Magnetic stripe ban initiated</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="font-semibold text-gray-900">January 1, 2025</div>
+                        <div class="text-sm text-gray-600 mt-1">Unverified individual accounts restricted to in-person transactions only; expired ID cards suspended from all services</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="font-semibold text-gray-900">July 1, 2025</div>
+                        <div class="text-sm text-gray-600 mt-1">Circular 17/2024: Corporate legal representatives must complete biometric verification; Magnetic stripe cards fully disabled; Fintech Regulatory Sandbox launched (Decree 94/2025)</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="font-semibold text-gray-900">September 1, 2025</div>
+                        <div class="text-sm text-gray-600 mt-1">86M non-compliant accounts deactivated by banks; Compliance rate at 57%</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="font-semibold text-gray-900">December 1, 2025</div>
+                        <div class="text-sm text-gray-600 mt-1">Biometric check-in mandatory at all domestic airports via VNeID platform</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="font-semibold text-gray-900">2027 Projection</div>
+                        <div class="text-sm text-gray-600 mt-1">AI expected to deliver 7-9% cost savings and 8-10% revenue growth for SE Asia fintech companies</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="font-semibold text-gray-900">2030 Vision</div>
+                        <div class="text-sm text-gray-600 mt-1">Basel III capital requirements fully implemented; 80-90% adult adoption of digital signatures; Green credit at 25% of outstanding loans</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Actionable Recommendations -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-6">💡 Strategic Recommendations for MoMo</h2>
+            <div class="space-y-4">
+                <!-- Recommendation 1 -->
+                <div class="card-momo p-6">
+                    <div class="recommendation-badge">HIGH PRIORITY</div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">1. Accelerate iProov Integration & Position as Market Leader</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <div class="font-medium text-gray-900 mb-2">Actions:</div>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Complete Dynamic Liveness rollout across all 30M users by Q4 2025</li>
+                                <li>• Launch <strong>"MoMo SafeID"</strong> marketing campaign highlighting 72% fraud reduction stats</li>
+                                <li>• Integrate liveness detection at critical touchpoints: login, transfers >10M VND, new device registration</li>
+                                <li>• Partner with VNeID for seamless chip ID integration via NFC</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="font-medium text-gray-900 mb-2">Expected Outcomes:</div>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• <strong>40-50% fraud reduction</strong> (aligned with SBV benchmarks)</li>
+                                <li>• <strong>22% trust increase</strong> (per early adopter data)</li>
+                                <li>• <strong>Regulatory compliance</strong> ahead of corporate mandate (July 2025)</li>
+                                <li>• <strong>Competitive differentiation</strong> vs. ZaloPay, ShopeePay</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-pink-50 rounded-lg p-4 mt-4 text-sm text-pink-900">
+                        <strong>Budget Note:</strong> Allocate sufficient resources for NFC infrastructure upgrades (MoMo's tech advantage), user education campaigns, and 24/7 support to avoid HSBC/UOB-style delays. Early investment pays off in market share gains.
+                    </div>
+                </div>
+
+                <!-- Recommendation 2 -->
+                <div class="card-momo p-6">
+                    <div class="recommendation-badge">STRATEGIC OPPORTUNITY</div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">2. Bridge the Urban-Rural Divide: Capture 86M Underserved Accounts</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <div class="font-medium text-gray-900 mb-2">Actions:</div>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Deploy <strong>mobile verification vans</strong> with NFC devices in rural provinces (partner with Viettel/VNPT agents)</li>
+                                <li>• Build <strong>in-app tutorials</strong> optimized for low digital literacy (23% prefer this format)</li>
+                                <li>• Enable <strong>offline account setup</strong> with biometric registration at MoMo agent locations</li>
+                                <li>• Offer <strong>incentives</strong> (cash bonuses, transaction fee waivers) for rural users completing verification</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="font-medium text-gray-900 mb-2">Market Opportunity:</div>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• <strong>86M deactivated accounts</strong> represent potential new users</li>
+                                <li>• <strong>62% rural population</strong> underserved by digital banks</li>
+                                <li>• <strong>$20.3B MSME credit gap</strong> addressable via AI-driven lending (MoMo's Pique acquisition)</li>
+                                <li>• <strong>Financial inclusion boost</strong> aligns with SBV's 2030 vision</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="success-box rounded-lg p-4 mt-4 text-sm">
+                        <strong>Case Study:</strong> VPBank and Shopee's BNPL partnership ($1.32B → $6.89B market by 2029) shows success in reaching unbanked segments. MoMo can replicate this with rural-focused digital lending + biometric onboarding.
+                    </div>
+                </div>
+
+                <!-- Recommendation 3 -->
+                <div class="card-momo p-6">
+                    <div class="recommendation-badge">IMMEDIATE THREAT</div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">3. Deploy AI-Powered Anti-Fraud Defenses Against Deepfakes & Phishing</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <div class="font-medium text-gray-900 mb-2">Actions:</div>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Implement <strong>real-time behavioral analytics</strong> to detect anomalies (e.g., unusual transfer patterns, device switches)</li>
+                                <li>• Integrate <strong>deepfake detection</strong> at video KYC and customer service touchpoints</li>
+                                <li>• Launch <strong>AI-driven phishing alerts</strong> within MoMo app (warn users of suspicious links/calls)</li>
+                                <li>• Partner with <strong>RCBC/Tookitaki-style solutions</strong> for event-triggered Customer Due Diligence (CDD)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="font-medium text-gray-900 mb-2">Threat Landscape:</div>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• <strong>1500% deepfake surge</strong> in APAC (179 incidents in Q1 2025)</li>
+                                <li>• <strong>54% phishing success rate</strong> with AI-generated emails</li>
+                                <li>• <strong>$485.6B global fraud losses</strong> (2023) from AI-driven attacks</li>
+                                <li>• <strong>90% of companies</strong> lack maturity to counter AI threats</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="alert-box rounded-lg p-4 mt-4 text-sm">
+                        <strong>Urgency:</strong> Visa's $3B investment and $27B fraud prevention (VAA, 2022) show ROI is massive. MoMo's AI advantage (Pique acquisition) must translate into production-ready anti-fraud tools by Q1 2026 to avoid becoming a target.
+                    </div>
+                </div>
+
+                <!-- Recommendation 4 -->
+                <div class="card-momo p-6">
+                    <div class="recommendation-badge">COST-BENEFIT</div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">4. Quantify & Communicate ROI: Build Internal Case for Investment</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <div class="font-medium text-gray-900 mb-2">Implementation Framework:</div>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• <strong>Phase 1 (Q4 2025):</strong> Complete iProov rollout, NFC infrastructure upgrades, staff training</li>
+                                <li>• <strong>Phase 2 (Q1 2026):</strong> Launch AI anti-fraud tools, rural expansion pilots, user education campaigns</li>
+                                <li>• <strong>Phase 3 (Q2-Q4 2026):</strong> Scale rural initiatives, optimize based on metrics, iterate on AI models</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="font-medium text-gray-900 mb-2">Estimated Impact (2027):</div>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• <strong>40-50% fraud reduction</strong> (SBV baseline: 40%, top banks: 72%)</li>
+                                <li>• <strong>7-9% cost savings</strong> from AI automation (SE Asia benchmark)</li>
+                                <li>• <strong>22% trust increase</strong> → higher user retention, transaction volume</li>
+                                <li>• <strong>Market share gains</strong> in rural segments (targeting 5-10% of 86M accounts)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="success-box rounded-lg p-4 mt-4 text-sm">
+                        <strong>Financial Justification:</strong> Vietcombank's 63% suspicious activity reduction post-biometrics demonstrates ROI. MoMo's 30M users × average fraud savings per user justifies upfront investment. Early adopters capture disproportionate market share in the $79B 2034 market.
+                    </div>
+                </div>
+
+                <!-- Recommendation 5 -->
+                <div class="card-momo p-6">
+                    <div class="recommendation-badge">REGULATORY ALIGNMENT</div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">5. Leverage Fintech Sandbox for Innovation & Regulatory Advantage</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <div class="font-medium text-gray-900 mb-2">Sandbox Opportunities (Decree 94/2025):</div>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• <strong>Credit Scoring:</strong> Test AI-driven alternative scoring for MSMEs (addressing $20.3B credit gap)</li>
+                                <li>• <strong>Open API Data Sharing:</strong> Build partnerships with banks/fintechs for seamless fund transfers</li>
+                                <li>• <strong>P2P Lending Trials:</strong> Pilot digital lending models (note: Vietnam-only, no foreign investment allowed)</li>
+                                <li>• <strong>Biometric Innovation:</strong> Experiment with voice biometrics, iris scans for ultra-secure transactions</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="font-medium text-gray-900 mb-2">Strategic Benefits:</div>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• <strong>First-mover advantage</strong> in tested, SBV-approved innovations</li>
+                                <li>• <strong>Direct SBV collaboration</strong> for faster regulatory approvals</li>
+                                <li>• <strong>Risk mitigation</strong> via controlled testing environment (up to 2 years + extensions)</li>
+                                <li>• <strong>Competitive moat</strong>: Sandbox learnings inform production rollouts ahead of rivals</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-pink-50 rounded-lg p-4 mt-4 text-sm text-pink-900">
+                        <strong>Action:</strong> Apply for Controlled Trial Certificate immediately. MoMo's existing license (50B VND charter capital, level 3 security) positions it well. Focus on credit scoring + open API pilots to enhance super app ecosystem.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Implementation Roadmap -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-6">🗺️ 12-Month Implementation Roadmap</h2>
+            <div class="card-momo p-6">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b-2 border-gray-200">
+                                <th class="text-left py-3 px-4 font-semibold text-gray-900">Phase</th>
+                                <th class="text-left py-3 px-4 font-semibold text-gray-900">Timeline</th>
+                                <th class="text-left py-3 px-4 font-semibold text-gray-900">Key Initiatives</th>
+                                <th class="text-left py-3 px-4 font-semibold text-gray-900">Success Metrics</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-4 px-4 font-medium text-pink-600">Phase 1: Foundation</td>
+                                <td class="py-4 px-4 text-gray-600">Q4 2025<br/>(3 months)</td>
+                                <td class="py-4 px-4 text-gray-600">
+                                    • Complete iProov Dynamic Liveness integration<br/>
+                                    • Upgrade NFC infrastructure at agent locations<br/>
+                                    • Launch "MoMo SafeID" brand campaign<br/>
+                                    • Train customer support for biometric queries
+                                </td>
+                                <td class="py-4 px-4 text-gray-600">
+                                    • 100% user access to biometric verification<br/>
+                                    • 90%+ successful NFC scans<br/>
+                                    • 50% user awareness of SafeID features
+                                </td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-4 px-4 font-medium text-pink-600">Phase 2: AI Defense</td>
+                                <td class="py-4 px-4 text-gray-600">Q1 2026<br/>(3 months)</td>
+                                <td class="py-4 px-4 text-gray-600">
+                                    • Deploy AI behavioral analytics for fraud detection<br/>
+                                    • Integrate deepfake detection at video KYC<br/>
+                                    • Launch in-app phishing alerts<br/>
+                                    • Apply for Fintech Sandbox certificate
+                                </td>
+                                <td class="py-4 px-4 text-gray-600">
+                                    • 95% anomaly detection accuracy<br/>
+                                    • 30% reduction in fraud incidents<br/>
+                                    • Sandbox approval for credit scoring pilot
+                                </td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-4 px-4 font-medium text-pink-600">Phase 3: Rural Expansion</td>
+                                <td class="py-4 px-4 text-gray-600">Q2-Q3 2026<br/>(6 months)</td>
+                                <td class="py-4 px-4 text-gray-600">
+                                    • Launch mobile verification vans in 10 provinces<br/>
+                                    • Build in-app tutorials for low literacy users<br/>
+                                    • Partner with rural banks for agent network<br/>
+                                    • Pilot AI-driven MSME lending in sandbox
+                                </td>
+                                <td class="py-4 px-4 text-gray-600">
+                                    • 5M new rural users onboarded<br/>
+                                    • 70% tutorial completion rate<br/>
+                                    • $500M in MSME loans disbursed
+                                </td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-4 px-4 font-medium text-pink-600">Phase 4: Scale & Optimize</td>
+                                <td class="py-4 px-4 text-gray-600">Q4 2026<br/>(3 months)</td>
+                                <td class="py-4 px-4 text-gray-600">
+                                    • Scale rural initiatives nationwide<br/>
+                                    • Optimize AI models based on fraud patterns<br/>
+                                    • Launch open API partnerships (sandbox learnings)<br/>
+                                    • Measure & report ROI to stakeholders
+                                </td>
+                                <td class="py-4 px-4 text-gray-600">
+                                    • 40-50% total fraud reduction<br/>
+                                    • 22% trust increase (user surveys)<br/>
+                                    • 10M rural users (target 12% of 86M)<br/>
+                                    • 7-9% cost savings from AI automation
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-6 bg-gray-50 rounded-lg p-4 text-sm text-gray-600">
+                    <strong>Budget Allocation Estimate:</strong> Phase 1 (40% - infrastructure), Phase 2 (25% - AI tools), Phase 3 (25% - rural expansion), Phase 4 (10% - optimization). Total investment justified by fraud reduction savings, market share gains in $79B 2034 market, and regulatory compliance avoidance of service suspensions.
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section class="mb-8">
+            <div class="card-momo p-8 bg-gradient-to-br from-pink-50 to-white border-2 border-pink-200">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-4">🎯 Conclusion: MoMo's Path to Security Leadership</h2>
+                <div class="text-gray-600 leading-relaxed space-y-3">
+                    <p>
+                        Vietnam's fintech revolution is at a critical inflection point. The <strong>mandatory biometric verification</strong> (72% fraud reduction) and <strong>AI-powered security</strong> (Visa's $3B commitment) have proven their effectiveness, but implementation challenges—from 86M deactivated accounts to 1500% deepfake surges—demand strategic, well-funded responses.
+                    </p>
+                    <p>
+                        <strong>MoMo's competitive advantages</strong>—iProov partnership, Pique AI acquisition, 68% market share, and 30M user base—position it to lead the sector's security transformation. However, success requires:
+                    </p>
+                    <ul class="list-disc list-inside ml-4 space-y-1">
+                        <li><strong>Immediate action</strong> on biometric rollout (Q4 2025) to avoid HSBC/UOB-style service disruptions</li>
+                        <li><strong>Proactive AI defense</strong> (Q1 2026) against deepfakes and phishing before they erode user trust</li>
+                        <li><strong>Inclusive expansion</strong> (Q2-Q3 2026) to capture 86M underserved accounts in rural areas</li>
+                        <li><strong>Sandbox innovation</strong> (ongoing) for credit scoring and open API to build competitive moats</li>
+                    </ul>
+                    <p>
+                        The <strong>$79.25B market by 2034</strong> (17.8% CAGR) rewards early movers who balance security, user experience, and financial inclusion. MoMo's 12-month roadmap—if executed with sufficient investment and cross-functional alignment—will deliver <strong>40-50% fraud reduction, 22% trust gains, and 7-9% cost savings</strong>, cementing its position as Vietnam's most secure and trusted fintech platform.
+                    </p>
+                    <div class="mt-6 p-4 bg-white rounded-lg border border-pink-300">
+                        <p class="text-pink-900 font-semibold">
+                            📌 Next Steps: Present this insight page to executive leadership for budget approval. Assign Phase 1 ownership (iProov integration) to Product/Engineering teams by October 2025. Monitor SBV sandbox applications and competitor moves closely.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MoMo Footer -->
+    <footer class="bg-gray-50 border-t border-gray-200 py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center space-x-3 mb-4">
+                <img src="https://homepage.momocdn.net/fileuploads/svg/momo-file-240411162904.svg" alt="MoMo" class="h-8 w-auto" />
+                <span class="font-semibold text-gray-900">MoMo</span>
+            </div>
+            <div class="text-sm text-gray-600 leading-relaxed">
+                <p class="font-semibold text-gray-900">CÔNG TY CỔ PHẦN DỊCH VỤ DI ĐỘNG TRỰC TUYẾN</p>
+                <p>Trụ sở chính: Tầng 6, Tòa nhà Phú Mỹ Hưng, Số 8, đường Hoàng Văn Thái, Phường Tân Mỹ, Quận 7, Thành phố Hồ Chí Minh</p>
+                <p><strong>Tên thương hiệu:</strong> MoMo</p>
+                <p class="mt-2">Giấy phép cung cấp dịch vụ trung gian thanh toán số 36/GP-NHNN do Ngân hàng Nhà nước Việt Nam cấp ngày 08/04/2015</p>
+            </div>
+            <div class="text-xs text-gray-500 mt-4">
+                <p>©Copyright M_Service 2025 • Research Insights: AI & Biometric Security Adoption</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Chart.js configurations with MoMo pink colors
+        const momoColors = {
+            primary: '#a50064',
+            secondary: '#d82f8b',
+            light: '#f9b5c3',
+            gradient: function(ctx) {
+                const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+                gradient.addColorStop(0, 'rgba(165, 0, 100, 0.8)');
+                gradient.addColorStop(1, 'rgba(216, 47, 139, 0.4)');
+                return gradient;
+            }
+        };
+
+        // Chart 1: Fraud Reduction
+        const fraudCtx = document.getElementById('fraudChart').getContext('2d');
+        new Chart(fraudCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Fraudulent Accounts', 'Fraud Incidents', 'Illicit Fund Accounts', 'Suspicious Activities (Vietcombank)'],
+                datasets: [{
+                    label: 'Reduction %',
+                    data: [72, 59, 52, 63],
+                    backgroundColor: [
+                        momoColors.primary,
+                        momoColors.secondary,
+                        momoColors.light,
+                        momoColors.primary
+                    ],
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.parsed.y + '% reduction';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 80,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Chart 2: Market Growth
+        const marketCtx = document.getElementById('marketChart').getContext('2d');
+        new Chart(marketCtx, {
+            type: 'line',
+            data: {
+                labels: ['2024', '2026', '2028', '2030', '2032', '2034'],
+                datasets: [{
+                    label: 'Vietnam Fintech Market Size (USD Billion)',
+                    data: [15.4, 22.5, 33.0, 48.2, 62.5, 79.25],
+                    borderColor: momoColors.primary,
+                    backgroundColor: momoColors.gradient(marketCtx),
+                    fill: true,
+                    tension: 0.4,
+                    borderWidth: 3,
+                    pointRadius: 6,
+                    pointBackgroundColor: momoColors.primary
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return '$' + context.parsed.y + 'B';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value + 'B';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Chart 3: Adoption Barriers
+        const adoptionCtx = document.getElementById('adoptionChart').getContext('2d');
+        new Chart(adoptionCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Compliant Accounts (57%)', 'Deactivated Accounts (43%)'],
+                datasets: [{
+                    data: [114, 86],
+                    backgroundColor: [momoColors.primary, '#e5e7eb'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': ' + context.parsed + 'M accounts';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Chart 4: AI Threats
+        const threatsCtx = document.getElementById('threatsChart').getContext('2d');
+        new Chart(threatsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Deepfake Growth', 'AI Phishing Click Rate', 'Traditional Phishing Click Rate', 'AI Detection Accuracy'],
+                datasets: [{
+                    label: 'Percentage',
+                    data: [1500, 54, 12, 95],
+                    backgroundColor: [
+                        '#ef4444',
+                        '#f59e0b',
+                        '#10b981',
+                        momoColors.primary
+                    ],
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.label;
+                                const value = context.parsed.y;
+                                if (label === 'Deepfake Growth') return value + '% increase';
+                                if (label === 'AI Detection Accuracy') return value + '% accuracy';
+                                return value + '% click-through rate';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Tab switching functionality
+        function showChart(chartName) {
+            // Hide all charts
+            document.querySelectorAll('[id^="chart-"]').forEach(chart => {
+                chart.classList.add('hidden');
+            });
+
+            // Show selected chart
+            document.getElementById('chart-' + chartName).classList.remove('hidden');
+
+            // Update tab buttons
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Animate comparison bars on page load
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.querySelectorAll('.comparison-fill').forEach(fill => {
+                    const width = fill.style.width;
+                    fill.style.width = '0';
+                    setTimeout(() => {
+                        fill.style.width = width;
+                    }, 100);
+                });
+            }, 500);
+        });
+    </script>
+</body>
+</html>

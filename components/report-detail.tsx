@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import type { Report, Source } from "@/lib/types"
+import type { Report } from "@/lib/types"
 import { createClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -14,15 +14,13 @@ import { useRouter } from "next/navigation"
 import { formatDistanceToNow } from "date-fns"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
-import DOMPurify from "isomorphic-dompurify"
 
 interface ReportDetailProps {
   report: Report
-  sources: Source[]
   userId: string
 }
 
-export function ReportDetail({ report, sources, userId }: ReportDetailProps) {
+export function ReportDetail({ report, userId }: ReportDetailProps) {
   const [isBookmarked, setIsBookmarked] = useState(report.is_bookmarked || false)
   const [isBookmarking, setIsBookmarking] = useState(false)
   const [isExporting, setIsExporting] = useState(false)
@@ -88,7 +86,6 @@ export function ReportDetail({ report, sources, userId }: ReportDetailProps) {
   }
 
   const publishedDate = new Date(report.published_at)
-  const sanitizedInsights = DOMPurify.sanitize(report.html_insights)
   // Unescape newline characters from markdown content
   const unescapedMarkdown = report.markdown_content.replace(/\\n/g, '\n')
 
@@ -147,79 +144,35 @@ export function ReportDetail({ report, sources, userId }: ReportDetailProps) {
       <Separator className="my-6 md:my-8" />
 
       <Tabs defaultValue="insights" className="w-full">
-        <TabsList className="grid w-full grid-cols-3 h-auto">
+        <TabsList className="grid w-full grid-cols-2 h-auto">
           <TabsTrigger value="insights" className="text-sm md:text-base">
             Insights
           </TabsTrigger>
           <TabsTrigger value="full-report" className="text-sm md:text-base">
             Full Report
           </TabsTrigger>
-          <TabsTrigger value="sources" className="text-sm md:text-base">
-            Sources
-          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="insights" className="mt-6">
-          <Card>
-            <CardContent className="pt-6">
-              <div
-                className="prose prose-sm md:prose-base max-w-none dark:prose-invert prose-headings:font-bold prose-h3:text-xl prose-h3:mb-3 prose-ul:my-3 prose-li:my-1 prose-strong:text-foreground prose-strong:font-semibold"
-                dangerouslySetInnerHTML={{ __html: sanitizedInsights }}
-              />
-            </CardContent>
-          </Card>
+          <iframe
+            srcDoc={report.html_insights}
+            className="w-full border-0 rounded-lg"
+            style={{ minHeight: "800px", height: "auto" }}
+            title="Research Insights"
+            sandbox="allow-scripts allow-same-origin"
+          />
         </TabsContent>
 
         <TabsContent value="full-report" className="mt-6">
           <Card>
             <CardContent className="pt-6">
-              <article className="prose prose-sm md:prose-base max-w-none dark:prose-invert prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-p:leading-relaxed prose-li:my-1 prose-strong:text-foreground prose-strong:font-semibold">
+              <article className="markdown-content">
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{unescapedMarkdown}</ReactMarkdown>
               </article>
             </CardContent>
           </Card>
         </TabsContent>
 
-        <TabsContent value="sources" className="mt-6">
-          <Card>
-            <CardContent className="pt-6">
-              {sources.length === 0 ? (
-                <p className="text-muted-foreground text-center py-8">No sources available for this report.</p>
-              ) : (
-                <div className="space-y-4">
-                  <h3 className="text-lg font-semibold mb-4">References & Sources</h3>
-                  <div className="space-y-3">
-                    {sources.map((source, index) => (
-                      <div
-                        key={source.id}
-                        className="flex gap-3 p-4 rounded-lg border bg-muted/30 hover:bg-muted/50 transition-colors"
-                      >
-                        <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-sm font-semibold text-primary">
-                          {index + 1}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h4 className="font-medium mb-1.5 leading-tight">{source.title}</h4>
-                          <a
-                            href={source.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-sm text-primary hover:underline break-all flex items-center gap-1 group"
-                          >
-                            <span className="line-clamp-1">{source.url}</span>
-                            <ExternalLink className="h-3 w-3 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
-                          </a>
-                          <p className="text-xs text-muted-foreground mt-1.5">
-                            Accessed {formatDistanceToNow(new Date(source.accessed_at), { addSuffix: true })}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        </TabsContent>
       </Tabs>
     </main>
   )
