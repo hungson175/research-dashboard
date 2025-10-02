@@ -50,7 +50,7 @@ async function testSyncAPI() {
 
     console.log('✅ Logged in as:', authData.user.email)
 
-    // Get session token
+    // Get session and cookies
     const { data: { session } } = await supabase.auth.getSession()
 
     if (!session) {
@@ -58,13 +58,21 @@ async function testSyncAPI() {
       return
     }
 
-    console.log('\n🚀 Calling sync API...')
+    // Extract cookies from the current session
+    const cookies = [
+      `sb-127-0-0-1-54321-auth-token=${session.access_token}`,
+      `sb-localhost-auth-token=${session.access_token}`
+    ].join('; ')
 
-    // Call the sync API
+    console.log('\n🚀 Calling sync API...')
+    console.log('   Using session:', session.access_token.substring(0, 20) + '...')
+
+    // Call the sync API with cookies
     const response = await fetch('http://localhost:3002/api/sync-reports', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Cookie': cookies,
         'Authorization': `Bearer ${session.access_token}`
       }
     })

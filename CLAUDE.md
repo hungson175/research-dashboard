@@ -25,6 +25,11 @@ pnpm start
 pnpm lint
 ```
 
+**Development Server Notes:**
+- Run dev server in background when working on code
+- Use BashOutput tool to check server output if needed
+- Default port: 3000 (or 3003 if 3000 is taken)
+
 ## Architecture
 
 ### Tech Stack
@@ -120,9 +125,23 @@ Required in `.env.local`:
 
 ## Database Setup
 
+### Initial Setup
 To initialize the Supabase database:
-1. Run `scripts/001_create_tables.sql` in Supabase SQL Editor
-2. Optionally run `scripts/002_seed_sample_data.sql` for sample reports
+1. Run `scripts/001_create_tables.sql` in Supabase SQL Editor (creates tables and RLS policies)
+2. Optionally run `scripts/002_seed_sample_data.sql` for sample reports (47 reports)
+
+### Schema Migrations
+Additional migration scripts available:
+- `scripts/003_redesign_schema.sql`: Schema redesign updates
+- `scripts/004_add_content_hash.sql`: Adds content_hash column for duplicate detection
+
+### Data Sync Scripts
+Node.js scripts for syncing data between local and production:
+- `scripts/insert_sample_report.mjs`: Insert single report from local files
+- `scripts/insert_all_reports.mjs`: Batch insert all reports
+- `scripts/sync_to_production.mjs`: Sync local data to production Supabase
+- `scripts/test_sync_api.mjs`: Test sync API endpoints
+- `scripts/test_sync_with_rls.sh`: Test Row Level Security policies
 
 **Note on seed data**: The seed data contains escaped newlines (`\n` as literal strings). The application handles this in `components/report-detail.tsx` by preprocessing markdown content with `.replace(/\\n/g, '\n')` before passing to ReactMarkdown.
 
@@ -193,6 +212,11 @@ This ensures proper rendering of:
 - Data tables with branded headers
 - JavaScript-driven features
 
+**Known Issues:**
+- HTML content in iframe may not match original page formatting exactly
+- Some interactive elements (tabs, tables) may require CSS/JS adjustments
+- Test rendering at `/reports/[id]` against original HTML files in `sample_pages/`
+
 ## Markdown Rendering Fix
 
 The Full Report tab uses `react-markdown` with `remark-gfm` for GitHub Flavored Markdown support. Due to escaped newlines in seed data, `components/report-detail.tsx` preprocesses content:
@@ -219,5 +243,31 @@ Documentation is organized in the `docs/` directory:
 
 Core documentation remains at root level:
 - **CLAUDE.md**: This file - project overview and guidelines
-- **specs.md**: Technical specifications
-- **current_prompt.md**: Current development tasks
+- **specs.md**: Original project specifications and requirements
+- **current_prompt.md**: Current development tasks and debugging notes
+
+Additional directories:
+- **sample_pages/**: Reference HTML pages for testing iframe rendering
+- **supabase/**: Supabase configuration and local setup files
+
+## Development Workflow
+
+### Before Making Changes
+1. Create and checkout a feature branch: `git checkout -b feature_short_name`
+2. Make changes in the feature branch
+
+### Before Committing
+1. Write automated tests for all code (if applicable)
+2. Run linting: `pnpm lint`
+3. Build successfully: `pnpm build`
+4. Ensure all tests pass
+
+### Debugging
+- Use Playwright MCP for browser-based debugging
+- Compare rendered output in `/reports/[id]` with original files in `sample_pages/`
+- Check background server output with BashOutput tool when dev server runs in background
+
+### Data Management
+- **NEVER generate mock/demo/sample data** - only work with real data
+- Test with smaller datasets before implementing for full dataset
+- Use scripts in `scripts/` directory for data operations
