@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insights: MoMo Merchant Network Expansion Strategy 2025-2026</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --momo-pink: #a50064;
+      --momo-pink-light: #f9b5c3;
+    }
+    body { font-family: system-ui; }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <!-- Header with MoMo logo -->
+  <nav class="bg-white shadow-sm px-6 py-3 flex items-center">
+    <img src="https://homepage.momocdn.net/fileuploads/svg/momo-file-240411162904.svg" alt="MoMo" class="h-8" />
+  </nav>
+
+  <!-- Main content -->
+  <main class="max-w-6xl mx-auto px-6 py-6">
+    <!-- Title & Executive Summary -->
+    <h1 class="text-2xl font-bold mb-2">Strategic Insights: Merchant Network Expansion (2025-2026)</h1>
+    <p class="text-gray-600 text-sm mb-6 leading-relaxed">MoMo faces intensifying competition from VNPay (350k-450k points vs MoMo's 200k) and rising bank app adoption, threatening its 68% market share. However, a 14% CAGR in QR payments, regulatory tailwinds from Decree 52/2024, and strategic gaps in Tier-2/3 cities present clear opportunities to defend SME merchants and target 300k points within 12 months.</p>
+
+    <!-- Top metrics banner -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div class="bg-white p-4 rounded shadow-sm border-l-4 border-[#a50064]">
+        <div class="text-2xl font-bold text-[#a50064]">14.27%</div>
+        <div class="text-xs text-gray-600">QR Payments CAGR (2025-2032)</div>
+      </div>
+      <div class="bg-white p-4 rounded shadow-sm border-l-4 border-amber-500">
+        <div class="text-2xl font-bold text-amber-600">350k-450k</div>
+        <div class="text-xs text-gray-600">VNPay Acceptance Points</div>
+      </div>
+      <div class="bg-white p-4 rounded shadow-sm border-l-4 border-green-500">
+        <div class="text-2xl font-bold text-green-600">$523M</div>
+        <div class="text-xs text-gray-600">VN QR Market by 2032</div>
+      </div>
+      <div class="bg-white p-4 rounded shadow-sm border-l-4 border-blue-500">
+        <div class="text-2xl font-bold text-blue-600">39%</div>
+        <div class="text-xs text-gray-600">B2B Invoices Overdue</div>
+      </div>
+    </div>
+
+    <!-- Key insights grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+      <!-- Card 1: Competitive Gap -->
+      <div class="bg-white p-5 rounded shadow-sm">
+        <h3 class="font-bold text-base mb-2 text-[#a50064]">1. Critical Merchant Gap vs VNPay</h3>
+        <p class="text-sm text-gray-600 mb-3">VNPay leads with 350k-450k acceptance points (150%-225% ahead of MoMo's 200k), targeting B2B/SME segments. MoMo's current 302k SME merchants face churn risks from VNPay's 40+ bank partnerships and lower fees.</p>
+        <canvas id="chart1" class="max-h-52"></canvas>
+      </div>
+
+      <!-- Card 2: Market Growth -->
+      <div class="bg-white p-5 rounded shadow-sm">
+        <h3 class="font-bold text-base mb-2 text-[#a50064]">2. QR Payment Explosion Favors E-Wallets</h3>
+        <p class="text-sm text-gray-600 mb-3">Vietnam's QR payment market grows at 14.27% CAGR (USD 180M in 2024 → USD 523M by 2032). E-wallets dominate with 41% e-commerce share vs bank apps, driven by rewards and seamless UX.</p>
+        <canvas id="chart2" class="max-h-52"></canvas>
+      </div>
+
+      <!-- Card 3: Tier-2/3 Opportunity -->
+      <div class="bg-white p-5 rounded shadow-sm">
+        <h3 class="font-bold text-base mb-2 text-[#a50064]">3. Untapped Tier-2/3 City Potential</h3>
+        <p class="text-sm text-gray-600 mb-3">MoMo has only 26k merchants in Da Nang, 7k in Hai Phong/Can Tho, and just 4 in Nha Trang—far below Tier-1 density. VNPay expanded to 750k merchants by Aug 2023, heavily targeting these cities.</p>
+        <canvas id="chart3" class="max-h-52"></canvas>
+      </div>
+
+      <!-- Card 4: B2B Payment Surge -->
+      <div class="bg-white p-5 rounded shadow-sm">
+        <h3 class="font-bold text-base mb-2 text-[#a50064]">4. B2B Payments: $10.5B Market by 2033</h3>
+        <p class="text-sm text-gray-600 mb-3">Vietnam B2B payments market reaches USD 4.76B (2024) → USD 10.51B (2033) at 9.2% CAGR. SMEs extend 75% more credit, with 65% on 45-day terms. Decree 52/2024 mandates cashless for >5M VND invoices from Jul 2025.</p>
+        <canvas id="chart4" class="max-h-52"></canvas>
+      </div>
+
+      <!-- Card 5: Bank Apps Threat -->
+      <div class="bg-white p-5 rounded shadow-sm">
+        <h3 class="font-bold text-base mb-2 text-[#a50064]">5. Bank Apps Eroding E-Wallet Loyalty</h3>
+        <p class="text-sm text-gray-600 mb-3">MoMo penetration dropped 8pts QoQ to 61% (Q4 2024), while bank apps rose 3pts to 34%. Only 40% prefer MoMo (down 3pts), with Gen X/Millennials shifting to bank apps offering 97-98% digital transactions.</p>
+        <canvas id="chart5" class="max-h-52"></canvas>
+      </div>
+
+      <!-- Card 6: AI & Incentive ROI -->
+      <div class="bg-white p-5 rounded shadow-sm">
+        <h3 class="font-bold text-base mb-2 text-[#a50064]">6. AI Adoption Lags, Incentives Drive Conversion</h3>
+        <p class="text-sm text-gray-600 mb-3">Only 25% of SEA sellers fully integrate AI (Feb 2025), with 64% citing high costs. However, personalized incentives (fee reductions, promotions) drive 30% CTR lifts and 40% conversion improvements in e-commerce case studies.</p>
+        <canvas id="chart6" class="max-h-52"></canvas>
+      </div>
+    </div>
+
+    <!-- Recommendations section -->
+    <div class="bg-white p-5 rounded shadow-sm border-l-4 border-[#a50064]">
+      <h3 class="font-bold text-base mb-3">Strategic Recommendations for 'MoMo Merchant Boost' (5-10T VND Investment)</h3>
+      <ul class="list-disc pl-5 text-sm space-y-2">
+        <li><strong>Aggressive Tier-2/3 Expansion:</strong> Target 100k+ new merchants in Da Nang, Can Tho, Hai Phong, Nha Trang with free POS/QR conversions (current: 40k total). Partner with local F&B/retail chains for rapid onboarding.</li>
+        <li><strong>Counter VNPay's Bank Partnerships:</strong> Expand from 70 to 20+ additional bank integrations, focusing on SME-focused banks (Techcombank, MBBank). Offer co-branded QR codes with lower MDR (0.3-0.5% vs VNPay's 0.6%).</li>
+        <li><strong>Decree 52/2024 Capitalization:</strong> Launch VNeDOC e-invoice integration by Q2 2025 for seamless >5M VND cashless mandate compliance. Target 50k SMEs with automated invoicing via Zalo/Facebook campaigns.</li>
+        <li><strong>Defend SME Segment with Targeted Incentives:</strong> Introduce tiered fee reductions (0% for <1M VND, 0.3% for 1-10M VND) and cross-marketing via Zalo (41M users). Pilot with 1,000 high-churn-risk SMEs to validate 25% GMV growth model.</li>
+        <li><strong>AI-Powered Merchant Personalization:</strong> Deploy AI recommendation engines for dynamic promotions (30% CTR uplift potential). Start with 10k pilot merchants in HCMC/Hanoi, scaling to 100k by Q4 2025.</li>
+        <li><strong>B2B GMV Forecasting & Retention Metrics:</strong> Build predictive models using FiinGroup/NHNN data to forecast 25% B2B GMV growth. Track NPS monthly (baseline: industry 7-8/10) and pilot feedback from 1k businesses to limit churn to <3%.</li>
+        <li><strong>Poach VNPay Merchants via Super-App Integration:</strong> Leverage MoMo's 100+ services (insurance, loans, e-commerce) to offer merchants bundled value beyond payments. Target VNPay's 20k merchants with switching incentives (3-month fee waivers + marketing credits).</li>
+      </ul>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center py-4 text-xs text-gray-500 border-t">
+    MoMo © 2025 | Full research details available in .md report | Data sources: FiinGroup, NHNN, Markets and Data, Decision Lab, IMARC
+  </footer>
+
+  <!-- Chart.js scripts -->
+  <script>
+    // Chart 1: Merchant Network Comparison
+    const ctx1 = document.getElementById('chart1').getContext('2d');
+    new Chart(ctx1, {
+      type: 'bar',
+      data: {
+        labels: ['MoMo', 'VNPay (Low)', 'VNPay (High)'],
+        datasets: [{
+          label: 'Acceptance Points (thousands)',
+          data: [200, 350, 450],
+          backgroundColor: ['#a50064', '#f59e0b', '#f59e0b'],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          title: { display: true, text: 'Merchant Network Gap (2025)', font: { size: 12 } }
+        },
+        scales: {
+          y: { beginAtZero: true, ticks: { font: { size: 10 } } },
+          x: { ticks: { font: { size: 10 } } }
+        }
+      }
+    });
+
+    // Chart 2: QR Payment Market Growth
+    const ctx2 = document.getElementById('chart2').getContext('2d');
+    new Chart(ctx2, {
+      type: 'line',
+      data: {
+        labels: ['2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032'],
+        datasets: [{
+          label: 'Market Size (USD Million)',
+          data: [180, 205, 235, 268, 307, 350, 400, 457, 523],
+          borderColor: '#a50064',
+          backgroundColor: 'rgba(165, 0, 100, 0.1)',
+          fill: true,
+          tension: 0.4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          title: { display: true, text: 'Vietnam QR Payments CAGR 14.27%', font: { size: 12 } }
+        },
+        scales: {
+          y: { beginAtZero: true, ticks: { font: { size: 10 } } },
+          x: { ticks: { font: { size: 10 } } }
+        }
+      }
+    });
+
+    // Chart 3: Tier-2/3 City Distribution
+    const ctx3 = document.getElementById('chart3').getContext('2d');
+    new Chart(ctx3, {
+      type: 'doughnut',
+      data: {
+        labels: ['Da Nang', 'Hai Phong', 'Can Tho', 'Nha Trang', 'Gap to Target'],
+        datasets: [{
+          data: [26.3, 7.1, 7.1, 0.004, 59.5],
+          backgroundColor: ['#a50064', '#ec4899', '#f472b6', '#fbbf24', '#e5e7eb']
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'right', labels: { font: { size: 9 }, boxWidth: 12 } },
+          title: { display: true, text: 'MoMo Tier-2/3 Merchants (k) - Need 100k More', font: { size: 11 } }
+        }
+      }
+    });
+
+    // Chart 4: B2B Payments Market
+    const ctx4 = document.getElementById('chart4').getContext('2d');
+    new Chart(ctx4, {
+      type: 'bar',
+      data: {
+        labels: ['2024', '2025', '2026', '2027', '2028', '2029', '2030', '2031', '2032', '2033'],
+        datasets: [{
+          label: 'Market Size (USD Billion)',
+          data: [4.76, 5.20, 5.68, 6.20, 6.77, 7.39, 8.07, 8.81, 9.62, 10.51],
+          backgroundColor: '#10b981',
+          borderWidth: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          title: { display: true, text: 'Vietnam B2B Payments Growth (9.2% CAGR)', font: { size: 12 } }
+        },
+        scales: {
+          y: { beginAtZero: true, ticks: { font: { size: 10 } } },
+          x: { ticks: { font: { size: 9 } } }
+        }
+      }
+    });
+
+    // Chart 5: E-Wallet vs Bank Apps Adoption
+    const ctx5 = document.getElementById('chart5').getContext('2d');
+    new Chart(ctx5, {
+      type: 'line',
+      data: {
+        labels: ['Q3 2024', 'Q4 2024', 'Q1 2025 (Est)', 'Q2 2025 (Est)'],
+        datasets: [
+          {
+            label: 'MoMo Penetration (%)',
+            data: [69, 61, 58, 55],
+            borderColor: '#a50064',
+            backgroundColor: 'rgba(165, 0, 100, 0.2)',
+            tension: 0.3
+          },
+          {
+            label: 'Bank Apps Penetration (%)',
+            data: [31, 34, 36, 38],
+            borderColor: '#3b82f6',
+            backgroundColor: 'rgba(59, 130, 246, 0.2)',
+            tension: 0.3
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'top', labels: { font: { size: 9 }, boxWidth: 12 } },
+          title: { display: true, text: 'E-Wallet vs Bank Apps Battle', font: { size: 12 } }
+        },
+        scales: {
+          y: { beginAtZero: true, max: 80, ticks: { font: { size: 10 } } },
+          x: { ticks: { font: { size: 9 } } }
+        }
+      }
+    });
+
+    // Chart 6: AI Adoption & Incentive Impact
+    const ctx6 = document.getElementById('chart6').getContext('2d');
+    new Chart(ctx6, {
+      type: 'radar',
+      data: {
+        labels: ['AI Integration', 'Fee Reduction Impact', 'Promo Effectiveness', 'Merchant Satisfaction', 'Conversion Rate', 'Retention'],
+        datasets: [
+          {
+            label: 'Current State',
+            data: [25, 45, 55, 60, 50, 58],
+            borderColor: '#f59e0b',
+            backgroundColor: 'rgba(245, 158, 11, 0.2)'
+          },
+          {
+            label: 'Target w/ Boost Program',
+            data: [40, 75, 80, 85, 70, 80],
+            borderColor: '#a50064',
+            backgroundColor: 'rgba(165, 0, 100, 0.2)'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'top', labels: { font: { size: 9 }, boxWidth: 12 } },
+          title: { display: true, text: 'Merchant Boost Program Impact (0-100 scale)', font: { size: 11 } }
+        },
+        scales: {
+          r: {
+            beginAtZero: true,
+            max: 100,
+            ticks: { font: { size: 8 }, stepSize: 20 },
+            pointLabels: { font: { size: 9 } }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -28,7 +28,7 @@ The Research Dashboard is now **fully operational** and running successfully on 
   - Sample data ready for testing
 
 ### 4. Application Testing ✅
-- Created test user: `test@example.com` / `test123456`
+- Created test user: `admin@local.dev` / `admin123456`
 - Verified all core features:
   - ✅ Login/Authentication
   - ✅ Dashboard with report cards
@@ -46,8 +46,8 @@ The Research Dashboard is now **fully operational** and running successfully on 
 
 ## Test Credentials
 
-- **Email**: `test@example.com`
-- **Password**: `test123456`
+- **Email**: `admin@local.dev`
+- **Password**: `admin123456`
 
 ## Key Files Created
 

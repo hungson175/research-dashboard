@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insights: Vietnam E-Wallet Competitive Dynamics 2025</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --momo-pink: #a50064;
+      --momo-pink-light: #f9b5c3;
+    }
+    body { font-family: system-ui; }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <!-- Header with MoMo logo -->
+  <nav class="bg-white shadow-sm px-6 py-3 flex items-center">
+    <img src="https://homepage.momocdn.net/fileuploads/svg/momo-file-240411162904.svg" alt="MoMo" class="h-8" />
+  </nav>
+
+  <!-- Main content -->
+  <main class="max-w-6xl mx-auto px-6 py-6">
+    <!-- Title & Executive Summary -->
+    <h1 class="text-2xl font-bold mb-2 text-[#a50064]">Vietnam E-Wallet Market: Competitive Intelligence 2025</h1>
+    <p class="text-gray-600 text-sm mb-6 leading-relaxed">Vietnam's digital payment market is projected to reach $7.19B in 2025 (26.6% CAGR), but MoMo faces intensifying threats from banks' domestic prepaid cards and super-app integrations by ZaloPay/VNPAY. Despite holding 68% market share, MoMo's active users declined to 14.4M in 2025 (from 31M claims), signaling urgent need for defensive strategies in BNPL, cross-border QR, and financial services to protect its $971B transaction volume.</p>
+
+    <!-- Top metrics banner -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div class="bg-white p-4 rounded shadow-sm text-center border-t-4 border-[#a50064]">
+        <p class="text-2xl font-bold text-[#a50064]">$7.19B</p>
+        <p class="text-xs text-gray-600">Market Size 2025</p>
+      </div>
+      <div class="bg-white p-4 rounded shadow-sm text-center border-t-4 border-blue-500">
+        <p class="text-2xl font-bold text-blue-600">14.4M</p>
+        <p class="text-xs text-gray-600">MoMo Active Users 2025</p>
+      </div>
+      <div class="bg-white p-4 rounded shadow-sm text-center border-t-4 border-green-500">
+        <p class="text-2xl font-bold text-green-600">106.7%</p>
+        <p class="text-xs text-gray-600">QR Code Growth</p>
+      </div>
+      <div class="bg-white p-4 rounded shadow-sm text-center border-t-4 border-orange-500">
+        <p class="text-2xl font-bold text-orange-600">40+</p>
+        <p class="text-xs text-gray-600">Competing E-Wallets</p>
+      </div>
+    </div>
+
+    <!-- Key insights grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+      <!-- Insight 1: Market Share Erosion Risk -->
+      <div class="bg-white p-5 rounded shadow-sm">
+        <h3 class="font-bold text-base mb-2 text-[#a50064]">1. Market Share Under Pressure</h3>
+        <p class="text-sm text-gray-600 mb-3">MoMo's claimed 68% share masks declining active users (14.4M vs 31M claimed). Bank apps now hold 34% penetration with 26% primary usage, eroding MoMo's dominance despite 47.3% projected share by 2030.</p>
+        <canvas id="marketShareChart" class="max-h-52"></canvas>
+      </div>
+
+      <!-- Insight 2: Competitive Threats from Banks & Fintechs -->
+      <div class="bg-white p-5 rounded shadow-sm">
+        <h3 class="font-bold text-base mb-2 text-[#a50064]">2. Banks Launch Prepaid Card Offensive</h3>
+        <p class="text-sm text-gray-600 mb-3">Vietcombank, BIDV, and Sacombank are launching NAPAS-backed domestic prepaid cards with lower fees, directly targeting MoMo's mobile payment core. VietQR integration enables 106.7% QR transaction surge, bypassing e-wallets.</p>
+        <canvas id="threatChart" class="max-h-52"></canvas>
+      </div>
+
+      <!-- Insight 3: User Behavior Shifts -->
+      <div class="bg-white p-5 rounded shadow-sm">
+        <h3 class="font-bold text-base mb-2 text-[#a50064]">3. Gen Z Switching for Fees & Integrations</h3>
+        <p class="text-sm text-gray-600 mb-3">65% of users cite promotions as key driver; 88% of Gen Z prefer cashless. MoMo leads with 86% active rate, but competitors gain via super-app integrations (ZaloPay +60% tx volume Q1 2025) and lower fees.</p>
+        <canvas id="userBehaviorChart" class="max-h-52"></canvas>
+      </div>
+
+      <!-- Insight 4: Market Consolidation & BNPL Opportunity -->
+      <div class="bg-white p-5 rounded shadow-sm">
+        <h3 class="font-bold text-base mb-2 text-[#a50064]">4. Consolidation & BNPL Growth</h3>
+        <p class="text-sm text-gray-600 mb-3">From 40+ e-wallets to super-apps via mergers (Vimo-mPOS). BNPL market explodes to $2.61B (36.5% growth 2025), offering MoMo new revenue stream to offset payment margin pressure.</p>
+        <canvas id="consolidationChart" class="max-h-52"></canvas>
+      </div>
+
+      <!-- Insight 5: MoMo's Product Performance -->
+      <div class="bg-white p-5 rounded shadow-sm">
+        <h3 class="font-bold text-base mb-2 text-[#a50064]">5. Internal Product Health Check</h3>
+        <p class="text-sm text-gray-600 mb-3">MoMo's 2025 transaction volume reached VND 970.9T ($40.5B). Moni chatbot users peaked at 301K in Sept but plummeted to 28K in Oct. Group savings (P2P) grew to VND 44T by Sept, showing financial services traction.</p>
+        <div class="grid grid-cols-2 gap-3 text-sm">
+          <div class="bg-gray-50 p-3 rounded">
+            <p class="font-bold text-[#a50064]">VND 970.9T</p>
+            <p class="text-xs text-gray-600">Total Txn Value 2025</p>
+          </div>
+          <div class="bg-gray-50 p-3 rounded">
+            <p class="font-bold text-blue-600">VND 44T</p>
+            <p class="text-xs text-gray-600">Group Savings (Sept)</p>
+          </div>
+          <div class="bg-gray-50 p-3 rounded">
+            <p class="font-bold text-orange-600">301K → 28K</p>
+            <p class="text-xs text-gray-600">Moni Users (Sept→Oct)</p>
+          </div>
+          <div class="bg-gray-50 p-3 rounded">
+            <p class="font-bold text-green-600">14.4M</p>
+            <p class="text-xs text-gray-600">Active Users 2025</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Insight 6: Regulatory & Cross-Border -->
+      <div class="bg-white p-5 rounded shadow-sm">
+        <h3 class="font-bold text-base mb-2 text-[#a50064]">6. Regulatory Shift & Cross-Border Race</h3>
+        <p class="text-sm text-gray-600 mb-3">SBV Circular 40/2024 (July 2025) recognizes e-wallets as payment method, enabling wallet-to-wallet transfers. ZaloPay leads cross-border QR (China, Korea, Singapore), while NAPAS-Laos link (Jan 2025) opens regional expansion.</p>
+        <canvas id="crossBorderChart" class="max-h-52"></canvas>
+      </div>
+    </div>
+
+    <!-- Recommendations section -->
+    <div class="bg-white p-5 rounded shadow-sm border-l-4 border-[#a50064]">
+      <h3 class="font-bold text-base mb-3">Strategic Recommendations for MoMo</h3>
+      <ul class="list-disc pl-5 text-sm space-y-2 text-gray-700">
+        <li><strong>Launch BNPL Aggressively:</strong> Capture $2.61B market (36.5% CAGR) to offset payment margin erosion; partner with e-commerce platforms like Shopee/Lazada for embedded financing.</li>
+        <li><strong>Expand Cross-Border QR:</strong> Counter ZaloPay's international lead by integrating VietQR with regional networks (China, ASEAN); target $19.56B remittance market via Western Union partnership.</li>
+        <li><strong>Strengthen Bank Partnerships:</strong> Co-create domestic prepaid cards with NAPAS to leverage bank trust while maintaining MoMo's user experience; avoid being bypassed by bank-fintech alliances.</li>
+        <li><strong>Accelerate Super-App Strategy:</strong> Integrate micro-investments (Túi Thần Tài scale-up), insurance, and stock trading to increase user stickiness; current financial services show traction (VND 44T group savings).</li>
+        <li><strong>Fix Moni Chatbot Engagement:</strong> Address 90% drop-off (301K→28K Oct) via AI personalization (leverage Pique acquisition); use for financial literacy and upselling BNPL/savings products.</li>
+        <li><strong>Target Rural/Tier 2-3 Cities:</strong> Banks lag in rural penetration (30% intermittent access); expand mobile money pilot (extended to Dec 2025) to capture 50M unbanked adults before consolidation.</li>
+        <li><strong>Enhance Security & Trust:</strong> Combat 13,900 annual fraud cases with advanced biometrics/tokenization; emphasize transparency to counter bank trust advantage (86.97% hold bank accounts vs e-wallet skepticism).</li>
+      </ul>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center py-4 text-xs text-gray-500 border-t">
+    MoMo © 2025 | Full research details available in .md report | Data sources: ResearchAndMarkets, NAPAS, Decision Lab, Q&Me, SBV
+  </footer>
+
+  <!-- Chart.js scripts -->
+  <script>
+    // Chart 1: Market Share Evolution
+    const ctx1 = document.getElementById('marketShareChart').getContext('2d');
+    new Chart(ctx1, {
+      type: 'bar',
+      data: {
+        labels: ['MoMo', 'Bank Apps', 'ZaloPay', 'VNPAY', 'Others'],
+        datasets: [{
+          label: '2024 Share (%)',
+          data: [68, 34, 53, 40, 25],
+          backgroundColor: 'rgba(165, 0, 100, 0.6)',
+          borderColor: '#a50064',
+          borderWidth: 1
+        }, {
+          label: '2030 Projected (%)',
+          data: [47.3, 45, 16.5, 30, 15],
+          backgroundColor: 'rgba(59, 130, 246, 0.6)',
+          borderColor: '#3b82f6',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          legend: { display: true, position: 'bottom' },
+          title: { display: false }
+        },
+        scales: {
+          y: { beginAtZero: true, max: 80, title: { display: true, text: 'Market Share (%)' } }
+        }
+      }
+    });
+
+    // Chart 2: Competitive Threats Timeline
+    const ctx2 = document.getElementById('threatChart').getContext('2d');
+    new Chart(ctx2, {
+      type: 'line',
+      data: {
+        labels: ['Q1 2024', 'Q2 2024', 'Q3 2024', 'Q4 2024', 'Q1 2025', 'Q2 2025'],
+        datasets: [{
+          label: 'Bank App Usage (%)',
+          data: [28, 30, 32, 34, 36, 38],
+          borderColor: '#f59e0b',
+          backgroundColor: 'rgba(245, 158, 11, 0.1)',
+          tension: 0.3,
+          fill: true
+        }, {
+          label: 'QR Transactions (Index)',
+          data: [100, 120, 145, 170, 195, 207],
+          borderColor: '#10b981',
+          backgroundColor: 'rgba(16, 185, 129, 0.1)',
+          tension: 0.3,
+          fill: true
+        }, {
+          label: 'E-Wallet Preference (%)',
+          data: [70, 68, 65, 62, 58, 55],
+          borderColor: '#a50064',
+          backgroundColor: 'rgba(165, 0, 100, 0.1)',
+          tension: 0.3,
+          fill: true
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          legend: { display: true, position: 'bottom' },
+          title: { display: false }
+        },
+        scales: {
+          y: { beginAtZero: true, title: { display: true, text: 'Growth Index' } }
+        }
+      }
+    });
+
+    // Chart 3: User Behavior Drivers
+    const ctx3 = document.getElementById('userBehaviorChart').getContext('2d');
+    new Chart(ctx3, {
+      type: 'doughnut',
+      data: {
+        labels: ['Promotions (65%)', 'Convenience (61%)', 'Low Fees (45%)', 'Integrations (40%)', 'Security (38%)'],
+        datasets: [{
+          data: [65, 61, 45, 40, 38],
+          backgroundColor: [
+            'rgba(165, 0, 100, 0.8)',
+            'rgba(59, 130, 246, 0.8)',
+            'rgba(16, 185, 129, 0.8)',
+            'rgba(245, 158, 11, 0.8)',
+            'rgba(239, 68, 68, 0.8)'
+          ],
+          borderWidth: 2,
+          borderColor: '#fff'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          legend: { display: true, position: 'bottom' },
+          title: { display: false }
+        }
+      }
+    });
+
+    // Chart 4: Market Size Growth Trajectory
+    const ctx4 = document.getElementById('consolidationChart').getContext('2d');
+    new Chart(ctx4, {
+      type: 'bar',
+      data: {
+        labels: ['2024', '2025', '2026', '2027', '2028', '2029'],
+        datasets: [{
+          label: 'E-Wallet Market ($B)',
+          data: [5.68, 7.19, 9.10, 11.52, 14.58, 16.52],
+          backgroundColor: 'rgba(165, 0, 100, 0.7)',
+          borderColor: '#a50064',
+          borderWidth: 1
+        }, {
+          label: 'BNPL Market ($B)',
+          data: [1.91, 2.61, 3.31, 4.19, 5.31, 6.73],
+          backgroundColor: 'rgba(16, 185, 129, 0.7)',
+          borderColor: '#10b981',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          legend: { display: true, position: 'bottom' },
+          title: { display: false }
+        },
+        scales: {
+          y: { beginAtZero: true, title: { display: true, text: 'Market Size (Billion USD)' } }
+        }
+      }
+    });
+
+    // Chart 5: Cross-Border Expansion
+    const ctx6 = document.getElementById('crossBorderChart').getContext('2d');
+    new Chart(ctx6, {
+      type: 'radar',
+      data: {
+        labels: ['QR Interoperability', 'Cross-Border Coverage', 'Remittance Integration', 'Super-App Features', 'Financial Services'],
+        datasets: [{
+          label: 'MoMo',
+          data: [7, 4, 8, 9, 7],
+          borderColor: '#a50064',
+          backgroundColor: 'rgba(165, 0, 100, 0.2)',
+          borderWidth: 2
+        }, {
+          label: 'ZaloPay',
+          data: [8, 9, 5, 7, 5],
+          borderColor: '#3b82f6',
+          backgroundColor: 'rgba(59, 130, 246, 0.2)',
+          borderWidth: 2
+        }, {
+          label: 'VNPAY',
+          data: [9, 6, 6, 6, 4],
+          borderColor: '#10b981',
+          backgroundColor: 'rgba(16, 185, 129, 0.2)',
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          legend: { display: true, position: 'bottom' },
+          title: { display: false }
+        },
+        scales: {
+          r: { beginAtZero: true, max: 10 }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

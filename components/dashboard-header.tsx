@@ -11,8 +11,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { LogOut, UserIcon, FileText, Bookmark } from "lucide-react"
+import { LogOut, UserIcon, FileText, Bookmark, Loader2 } from "lucide-react"
 import { useRouter, usePathname } from "next/navigation"
+import { useState } from "react"
 import Link from "next/link"
 
 interface DashboardHeaderProps {
@@ -22,12 +23,19 @@ interface DashboardHeaderProps {
 export function DashboardHeader({ user }: DashboardHeaderProps) {
   const router = useRouter()
   const pathname = usePathname()
+  const [isSigningOut, setIsSigningOut] = useState(false)
 
   const handleSignOut = async () => {
-    const supabase = createClient()
-    await supabase.auth.signOut()
-    router.push("/auth/login")
-    router.refresh()
+    try {
+      setIsSigningOut(true)
+      const supabase = createClient()
+      await supabase.auth.signOut()
+      router.push("/auth/login")
+      router.refresh()
+    } catch (error) {
+      console.error("Error signing out:", error)
+      setIsSigningOut(false)
+    }
   }
 
   const isBookmarksPage = pathname === "/bookmarks"
@@ -55,7 +63,7 @@ export function DashboardHeader({ user }: DashboardHeaderProps) {
             </Button>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-full hover:bg-primary/10 transition-colors">
+                <Button type="button" variant="ghost" size="icon" className="rounded-full hover:bg-primary/10 transition-colors">
                   <UserIcon className="h-5 w-5" />
                   <span className="sr-only">User menu</span>
                 </Button>
@@ -70,10 +78,20 @@ export function DashboardHeader({ user }: DashboardHeaderProps) {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
                   onClick={handleSignOut}
+                  disabled={isSigningOut}
                   className="cursor-pointer text-destructive focus:text-destructive hover:bg-destructive/10"
                 >
-                  <LogOut className="mr-2 h-4 w-4" />
-                  <span>Sign out</span>
+                  {isSigningOut ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      <span>Signing out...</span>
+                    </>
+                  ) : (
+                    <>
+                      <LogOut className="mr-2 h-4 w-4" />
+                      <span>Sign out</span>
+                    </>
+                  )}
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

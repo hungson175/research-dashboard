@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoMo Open Banking Security Insights 2025</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --momo-pink: #a50064;
+      --momo-pink-light: #f9b5c3;
+    }
+    body { font-family: system-ui; }
+    .metric-card { transition: transform 0.2s; }
+    .metric-card:hover { transform: translateY(-2px); }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <!-- Header -->
+  <nav class="bg-white shadow-sm px-6 py-3 flex items-center">
+    <img src="https://homepage.momocdn.net/fileuploads/svg/momo-file-240411162904.svg" alt="MoMo" class="h-8" />
+    <span class="ml-4 text-sm text-gray-500">Open Banking & Cybersecurity Insights 2025</span>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-6 py-6">
+    <!-- Title & Executive Summary -->
+    <h1 class="text-2xl font-bold mb-2 text-[#a50064]">Vietnam Open Banking: Security Risks & Opportunities for MoMo</h1>
+    <p class="text-gray-700 text-sm mb-6 leading-relaxed">
+      Vietnam faces escalating cyber threats (8.5M accounts stolen H1 2025, 17.53% phishing rate) as open banking launches via Circular 64/2024. MoMo must balance innovation with security as 31M users transition to API-driven services by March 2027, while preparing for CBDC integration amid ongoing SBV research.
+    </p>
+
+    <!-- Top Metrics Banner -->
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+      <div class="metric-card bg-gradient-to-br from-red-50 to-red-100 p-4 rounded-lg shadow">
+        <div class="text-2xl font-bold text-red-700">8.5M</div>
+        <div class="text-xs text-red-600 font-medium">Accounts Stolen H1 2025</div>
+      </div>
+      <div class="metric-card bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg shadow">
+        <div class="text-2xl font-bold text-purple-700">17.53%</div>
+        <div class="text-xs text-purple-600 font-medium">VN Phishing Rate (3rd ASEAN)</div>
+      </div>
+      <div class="metric-card bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg shadow">
+        <div class="text-2xl font-bold text-blue-700">Mar 2027</div>
+        <div class="text-xs text-blue-600 font-medium">Open API Compliance Deadline</div>
+      </div>
+      <div class="metric-card bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg shadow">
+        <div class="text-2xl font-bold text-green-700">31M</div>
+        <div class="text-xs text-green-600 font-medium">MoMo Users at Risk</div>
+      </div>
+      <div class="metric-card bg-gradient-to-br from-yellow-50 to-yellow-100 p-4 rounded-lg shadow">
+        <div class="text-2xl font-bold text-yellow-700">99.74</div>
+        <div class="text-xs text-yellow-600 font-medium">Vietnam GCI Score (Tier 1)</div>
+      </div>
+    </div>
+
+    <!-- Key Insights Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+
+      <!-- Insight 1: Cyber Threat Surge -->
+      <div class="bg-white p-5 rounded-lg shadow-sm border-t-4 border-[#a50064]">
+        <h3 class="font-bold text-base mb-2 text-[#a50064]">1. Vietnam Cyber Threat Surge: 3x Breaches vs 2024</h3>
+        <p class="text-sm text-gray-600 mb-3">
+          H1 2025 saw 191 data breaches (3x increase), 530K DDoS attacks, and AI-powered phishing targeting mobile wallets. Financial sector absorbed 71% of fraudulent site attacks, with Vietnam ranking 3rd in ASEAN for phishing exposure.
+        </p>
+        <canvas id="threatChart" class="max-h-48"></canvas>
+      </div>
+
+      <!-- Insight 2: Open Banking Rollout Timeline -->
+      <div class="bg-white p-5 rounded-lg shadow-sm border-t-4 border-purple-600">
+        <h3 class="font-bold text-base mb-2 text-purple-700">2. Open Banking Phased Rollout: 3-Stage API Compliance</h3>
+        <p class="text-sm text-gray-600 mb-3">
+          Circular 64/2024 mandates 3-phase API implementation: customer queries (12mo), consent access (18mo), payment initiation (24mo) by March 2027. MoMo must upgrade infrastructure to OAuth 2.0 + TLS 1.2+ standards while maintaining 31M user trust.
+        </p>
+        <div class="grid grid-cols-3 gap-2 text-center text-xs mt-4">
+          <div class="bg-blue-50 p-3 rounded">
+            <div class="font-bold text-blue-700">Phase 1</div>
+            <div class="text-gray-600">Sep 2025</div>
+            <div class="text-blue-600 font-medium">Info Queries</div>
+          </div>
+          <div class="bg-purple-50 p-3 rounded">
+            <div class="font-bold text-purple-700">Phase 2</div>
+            <div class="text-gray-600">Dec 2025</div>
+            <div class="text-purple-600 font-medium">Consent APIs</div>
+          </div>
+          <div class="bg-pink-50 p-3 rounded">
+            <div class="font-bold text-[#a50064]">Phase 3</div>
+            <div class="text-gray-600">Mar 2027</div>
+            <div class="text-pink-700 font-medium">Payment Init</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Insight 3: MoMo Security Position -->
+      <div class="bg-white p-5 rounded-lg shadow-sm border-t-4 border-green-600">
+        <h3 class="font-bold text-base mb-2 text-green-700">3. MoMo's Proactive Defense: iProov Partnership & Biometrics</h3>
+        <p class="text-sm text-gray-600 mb-3">
+          MoMo deployed Dynamic Liveness (iProov) to combat deepfakes/injection attacks, aligning with SBV Decision 2345. Partnership targets 31M users with bank-grade biometric verification, positioning MoMo ahead of competitors for open banking security compliance.
+        </p>
+        <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg mt-3">
+          <div class="flex items-center justify-between text-sm">
+            <div>
+              <div class="font-semibold text-green-800">Security Stack</div>
+              <div class="text-xs text-gray-600 mt-1">Multi-layered approach</div>
+            </div>
+            <div class="text-right">
+              <div class="text-xl font-bold text-green-700">✓</div>
+              <div class="text-xs text-green-600">SBV Compliant</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Insight 4: CBDC Impact Horizon -->
+      <div class="bg-white p-5 rounded-lg shadow-sm border-t-4 border-orange-600">
+        <h3 class="font-bold text-base mb-2 text-orange-700">4. CBDC Integration: Research Phase with 2026+ Timeline</h3>
+        <p class="text-sm text-gray-600 mb-3">
+          SBV assigned Viettel/MobiFone to research CBDC (Directive 942), still in early stages with no active pilot. Resolution 5/2025 pilots crypto assets (5-year sandbox), but CBDC rollout likely post-2026, giving MoMo time to prepare API security for eventual integration.
+        </p>
+        <canvas id="cbdcChart" class="max-h-44"></canvas>
+      </div>
+
+      <!-- Insight 5: Regional Best Practices -->
+      <div class="bg-white p-5 rounded-lg shadow-sm border-t-4 border-blue-600 md:col-span-2">
+        <h3 class="font-bold text-base mb-2 text-blue-700">5. Adaptable Security Models: UK, EU, Singapore Frameworks</h3>
+        <p class="text-sm text-gray-600 mb-3">
+          Global leaders offer proven models: UK's PSD2 mandates 3D Secure 2.2 + TRA exemptions; Singapore's MAS requires 2FA + kill switches + 24/7 monitoring; EU's EBA emphasizes API encryption + fraud reporting. MoMo can adapt these for Vietnam's 44% unbanked population and rural connectivity challenges.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-3">
+          <div class="bg-red-50 p-3 rounded text-center">
+            <div class="text-2xl mb-1">🇬🇧</div>
+            <div class="font-semibold text-sm text-red-800">UK PSD2</div>
+            <div class="text-xs text-gray-600 mt-1">SCA + 3DS 2.2 + TRA</div>
+          </div>
+          <div class="bg-blue-50 p-3 rounded text-center">
+            <div class="text-2xl mb-1">🇪🇺</div>
+            <div class="font-semibold text-sm text-blue-800">EU EBA</div>
+            <div class="text-xs text-gray-600 mt-1">API Encryption + Audit</div>
+          </div>
+          <div class="bg-purple-50 p-3 rounded text-center">
+            <div class="text-2xl mb-1">🇸🇬</div>
+            <div class="font-semibold text-sm text-purple-800">Singapore MAS</div>
+            <div class="text-xs text-gray-600 mt-1">2FA + Kill Switch + Monitor</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Recommendations Section -->
+    <div class="bg-white p-5 rounded-lg shadow-sm border-l-4 border-[#a50064]">
+      <h3 class="font-bold text-base mb-3 text-[#a50064]">Strategic Recommendations for MoMo</h3>
+      <ul class="list-disc pl-5 text-sm space-y-2 text-gray-700">
+        <li><strong>Immediate (Q1 2026):</strong> Complete Phase 1 Open API migration (OAuth 2.0, TLS 1.2+, developer sandbox) before Sep 2025 deadline; integrate iProov biometrics across all 31M user accounts.</li>
+        <li><strong>Security Infrastructure:</strong> Deploy AI-driven fraud detection (real-time monitoring like MAS), implement zero-trust architecture, and establish 24/7 SOC with threat intelligence feeds from Kaspersky/regional CERTs.</li>
+        <li><strong>Compliance Framework:</strong> Align with SBV Decision 2345 biometric mandates, adopt PSD2-style Transaction Risk Analysis (TRA) exemptions for low-value payments, and prepare for Decree 94 fintech sandbox participation.</li>
+        <li><strong>User Education:</strong> Launch anti-phishing campaigns targeting 44% unbanked/rural users, deploy in-app security training (inspired by Singapore's "Be Safe Online"), and introduce consent dashboards for API data sharing transparency.</li>
+        <li><strong>CBDC Readiness:</strong> Monitor SBV research developments, pilot offline payment capabilities (per IMF recommendations), and design CBDC-compatible APIs with quantum-resistant cryptography for future-proofing.</li>
+        <li><strong>Ecosystem Partnerships:</strong> Collaborate with VPBank/VietinBank on Open Banking standards, join ASEAN Cyber-CC for regional threat intelligence, and integrate with VietQR/NAPAS for interoperable payment rails.</li>
+        <li><strong>Risk Mitigation:</strong> Implement dynamic linking for payment initiation (Phase 3), cap CBDC holdings to prevent disintermediation (per IMF guidance), and maintain incident response plans with <24hr breach notification to SBV.</li>
+      </ul>
+    </div>
+
+    <!-- Page Break Indicator -->
+    <div class="text-center my-6 text-xs text-gray-400">
+      <span class="inline-block px-4 py-1 bg-gray-100 rounded-full">Page 1 of 2</span>
+    </div>
+
+    <!-- Additional Context Section -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+
+      <!-- Financial Context -->
+      <div class="bg-gradient-to-br from-pink-50 to-purple-50 p-5 rounded-lg shadow-sm">
+        <h3 class="font-bold text-base mb-2 text-[#a50064]">Vietnam Fintech Growth Trajectory</h3>
+        <div class="text-sm text-gray-700 space-y-2">
+          <div class="flex justify-between">
+            <span>Fintech Market (2024)</span>
+            <span class="font-bold text-[#a50064]">$15.7B</span>
+          </div>
+          <div class="flex justify-between">
+            <span>Projected (2030)</span>
+            <span class="font-bold text-purple-700">$50B+</span>
+          </div>
+          <div class="flex justify-between">
+            <span>CAGR</span>
+            <span class="font-bold text-green-700">21%</span>
+          </div>
+          <div class="flex justify-between">
+            <span>Adults with Payment Accounts</span>
+            <span class="font-bold text-blue-700">87%</span>
+          </div>
+          <div class="text-xs text-gray-500 mt-3 pt-3 border-t">
+            Source: Konsentus Vietnam Open Banking Leadership Report 2025
+          </div>
+        </div>
+      </div>
+
+      <!-- Regulatory Timeline -->
+      <div class="bg-gradient-to-br from-blue-50 to-cyan-50 p-5 rounded-lg shadow-sm">
+        <h3 class="font-bold text-base mb-2 text-blue-700">Key Regulatory Milestones</h3>
+        <div class="text-sm space-y-3">
+          <div class="flex items-start">
+            <div class="w-20 text-xs font-semibold text-gray-600">Jul 2025</div>
+            <div class="flex-1 text-gray-700">E-wallets recognized as legal payment instruments (Circular 40/2024)</div>
+          </div>
+          <div class="flex items-start">
+            <div class="w-20 text-xs font-semibold text-gray-600">Sep 2025</div>
+            <div class="flex-1 text-gray-700">Phase 1 Open APIs live (customer data queries)</div>
+          </div>
+          <div class="flex items-start">
+            <div class="w-20 text-xs font-semibold text-gray-600">Jan 2026</div>
+            <div class="flex-1 text-gray-700">Digital Tech Industry Law effective (crypto framework)</div>
+          </div>
+          <div class="flex items-start">
+            <div class="w-20 text-xs font-semibold text-gray-600">Mar 2027</div>
+            <div class="flex-1 text-gray-700">Full Open Banking compliance deadline (all APIs)</div>
+          </div>
+          <div class="flex items-start">
+            <div class="w-20 text-xs font-semibold text-gray-600">2026+</div>
+            <div class="flex-1 text-gray-700">Potential CBDC pilot launch (pending SBV research)</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center py-4 text-xs text-gray-500 border-t bg-white">
+    MoMo © 2025 | Full research details available in markdown report | Data sources: SBV, Kaspersky, IMF, BIS, Konsentus
+  </footer>
+
+  <!-- Chart.js Scripts -->
+  <script>
+    // Chart 1: Cyber Threats H1 2025
+    const ctx1 = document.getElementById('threatChart').getContext('2d');
+    new Chart(ctx1, {
+      type: 'bar',
+      data: {
+        labels: ['Accounts Stolen', 'DDoS Attacks', 'Data Breaches', 'Fraudulent Sites'],
+        datasets: [{
+          label: 'H1 2025 Volume',
+          data: [8500000, 530000, 191, 1200],
+          backgroundColor: [
+            'rgba(165, 0, 100, 0.8)',
+            'rgba(239, 68, 68, 0.8)',
+            'rgba(249, 115, 22, 0.8)',
+            'rgba(234, 179, 8, 0.8)'
+          ],
+          borderColor: [
+            'rgba(165, 0, 100, 1)',
+            'rgba(239, 68, 68, 1)',
+            'rgba(249, 115, 22, 1)',
+            'rgba(234, 179, 8, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          legend: { display: false },
+          title: { display: false }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: function(value) {
+                if (value >= 1000000) return (value/1000000) + 'M';
+                if (value >= 1000) return (value/1000) + 'K';
+                return value;
+              }
+            }
+          }
+        }
+      }
+    });
+
+    // Chart 2: CBDC Timeline
+    const ctx2 = document.getElementById('cbdcChart').getContext('2d');
+    new Chart(ctx2, {
+      type: 'line',
+      data: {
+        labels: ['2021', '2022', '2023', '2024', '2025', '2026', '2027'],
+        datasets: [{
+          label: 'CBDC Development Stage',
+          data: [1, 2, 2, 3, 3, 4, 5],
+          borderColor: 'rgba(249, 115, 22, 1)',
+          backgroundColor: 'rgba(249, 115, 22, 0.1)',
+          tension: 0.4,
+          fill: true
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+          legend: { display: false },
+          title: { display: false }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 6,
+            ticks: {
+              stepSize: 1,
+              callback: function(value) {
+                const stages = ['', 'Research', 'Framework', 'Pilot Prep', 'Testing', 'Launch', 'Scale'];
+                return stages[value] || '';
+              }
+            }
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -184,7 +184,7 @@ vercel --token YOUR_TOKEN --yes --prod
 **Local Setup** (see `SETUP_COMPLETE.md`):
 - Uses local Supabase via Docker (`supabase start`)
 - Environment variables in `.env.local`
-- Test user with `test@example.com` (not valid in production)
+- Test user: `admin@local.dev` / `admin123456`
 
 **Production**:
 - Cloud Supabase instance

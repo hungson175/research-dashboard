@@ -4,9 +4,11 @@ import type { Report } from "@/lib/types"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Bookmark, Calendar, ArrowRight } from "lucide-react"
+import { Bookmark, Calendar, ArrowRight, Loader2 } from "lucide-react"
 import Link from "next/link"
 import { formatDistanceToNow } from "date-fns"
+import { useState } from "react"
+import { useRouter } from "next/navigation"
 
 interface ReportCardProps {
   report: Report
@@ -15,6 +17,14 @@ interface ReportCardProps {
 
 export function ReportCard({ report, onBookmarkToggle }: ReportCardProps) {
   const publishedDate = new Date(report.published_at)
+  const [isNavigating, setIsNavigating] = useState(false)
+  const router = useRouter()
+
+  const handleReadReport = (e: React.MouseEvent) => {
+    e.preventDefault()
+    setIsNavigating(true)
+    router.push(`/reports/${report.id}`)
+  }
 
   return (
     <Card className="card-momo flex flex-col shadow-momo-sm group">
@@ -59,11 +69,22 @@ export function ReportCard({ report, onBookmarkToggle }: ReportCardProps) {
         </div>
       </CardContent>
       <CardFooter>
-        <Button asChild className="btn-momo w-full group/button">
-          <Link href={`/reports/${report.id}`}>
-            Read Report
-            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/button:translate-x-1" />
-          </Link>
+        <Button
+          onClick={handleReadReport}
+          disabled={isNavigating}
+          className="btn-momo w-full group/button"
+        >
+          {isNavigating ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" />
+              Loading...
+            </>
+          ) : (
+            <>
+              Read Report
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/button:translate-x-1" />
+            </>
+          )}
         </Button>
       </CardFooter>
     </Card>
